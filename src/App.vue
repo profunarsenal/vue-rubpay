@@ -1,8 +1,21 @@
 <template>
     <div class="wrapper">
+        <app-sidebar/>
+        <div class="test">test</div>
         <router-view/>
     </div>
 </template>
+
+<script>
+import AppSidebar from './components/Sidebar/AppSidebar';
+
+export default {
+    name: "App",
+    components: {
+        AppSidebar
+    },
+};
+</script>
 
 <style lang="sass">
 body
@@ -11,12 +24,7 @@ body
     color: $black
     background-color: $white
     min-width: 320px
-    &.open
-        overflow: hidden
 
-.wrapper
-    position: relative
+#app
     height: 100vh
-    display: flex
-    flex-direction: column
 </style>

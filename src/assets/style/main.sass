@@ -1,3 +1,24 @@
 @import './fonts'
 @import './null'
 @import './variables'
+
+.container
+    position: relative
+    display: flex
+    flex-direction: column
+    margin-left: 224px
+    transition: all 0.3s ease
+    &.collapsed
+        margin-left: 72px
+
+@media(max-width: 1366px)
+   .container
+        margin-left: 72px
+        &.collapsed
+            margin-left: 72px
+
+@media(max-width: 767px)
+    .container
+        margin-left: 0
+        &.collapsed
+            margin-left: 0
