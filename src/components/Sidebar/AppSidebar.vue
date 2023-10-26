@@ -1,86 +1,82 @@
 <template>
     <aside :class="sidebarClasess">
-        <div class="sidebar-body">
-            <div class="logo">
-                <img
-                    :src="logo"
-                    alt="Логотип"
-                >
-            </div>
-
-            <ul class="menu">
-                <li
-                    :class="['menu-item', { active: item.path === $route.path}]"
-                    v-for="item in menuItems"
-                    :key="item.title"
-                >
-                    <router-link 
-                        class="menu-link"
-                        :to="item.path"
-                    >
-                        <img
-                            v-svg-inline
-                            class="menu-icon"
-                            :src="item.icon"
-                            :alt="item.title"
-                        />
-                        <span class="text">{{ item.title }}</span>
-                    </router-link>
-                    <!-- <div class="sidebar-tooltip tooltip">{{ item.title }}</div> -->
-                </li>
-            </ul>
-
-            <div class="buttons">
-                <button class="button" href="#">
-                    <img
-                        v-svg-inline
-                        class="button-icon"
-                        src="@/assets/img/telegram-sidebar.svg"
-                        alt="Поддержка" 
-                    />
-                    <span class="text">Поддержка</span>
-                    <!-- <div class="sidebar-tooltip tooltip">Поддержка</div> -->
-                </button>
-                <button class="button bm-exit">
-                    <img
-                        v-svg-inline
-                        class="button-icon"
-                        src="@/assets/img/exit.svg"
-                        alt="Выйти"
-                    />
-                    <span class="text">Выйти</span>
-                    <!-- <div class="sidebar-tooltip tooltip">Выйти</div> -->
-                </button>
-            </div>
-
-            <button
-                class="collapse-button"
-                @click="collapseSidebar"
+        <div class="logo">
+            <img
+                :src="logo"
+                alt="Логотип"
             >
-                <img
-                    class="collapse-icon"
-                    src="@/assets/img/arrow-tick.svg"
-                    alt="Свернуть"
+        </div>
+
+        <ul class="menu">
+            <li
+                :class="['menu-item', { active: item.path === $route.path}]"
+                v-for="item in menuItems"
+                :key="item.title"
+            >
+                <router-link 
+                    class="menu-link"
+                    :to="item.path"
                 >
-                <!-- <div class="sidebar-tooltip tooltip">Свернуть</div> -->
+                    <img
+                        v-svg-inline
+                        class="menu-icon"
+                        :src="item.icon"
+                        :alt="item.title"
+                    />
+                    <span class="text">{{ item.title }}</span>
+                </router-link>
+                <!-- <div class="sidebar-tooltip tooltip">{{ item.title }}</div> -->
+            </li>
+        </ul>
+
+        <div class="buttons">
+            <button class="button" href="#">
+                <img
+                    v-svg-inline
+                    class="button-icon"
+                    src="@/assets/img/telegram-sidebar.svg"
+                    alt="Поддержка" 
+                />
+                <span class="text">Поддержка</span>
+                <!-- <div class="sidebar-tooltip tooltip">Поддержка</div> -->
+            </button>
+            <button class="button bm-exit">
+                <img
+                    v-svg-inline
+                    class="button-icon"
+                    src="@/assets/img/exit.svg"
+                    alt="Выйти"
+                />
+                <span class="text">Выйти</span>
+                <!-- <div class="sidebar-tooltip tooltip">Выйти</div> -->
             </button>
         </div>
+
+        <button
+            class="collapse-button"
+            @click="collapseSidebar"
+        >
+            <img
+                class="collapse-icon"
+                src="@/assets/img/arrow-tick.svg"
+                alt="Свернуть"
+            >
+            <!-- <div class="sidebar-tooltip tooltip">Свернуть</div> -->
+        </button>
     </aside>
 </template>
 
 <script>
-import window from '@/mixins/window';
 import { MENU_ITEMS } from '@/helpers/constants';
 
 export default {
     name: "AppHeader",
 
-    mixins: [window],
-
-    data() {
-        return {
-            isCollapsed: false,
-        };
+    props: {
+        isCollapsed: {
+            type: Boolean,
+            default: false,
+        },
     },
 
     computed: {
@@ -99,13 +95,12 @@ export default {
 
     methods: {
         collapseSidebar() {
-            this.isCollapsed = !this.isCollapsed;
+            this.$emit('collapse', !this.isCollapsed);
         },
     },
 
     created() {
         this.menuItems = MENU_ITEMS;
-        this.isCollapsed = this.isDesktop ? false : true;
     },
 }
 </script>
@@ -117,6 +112,9 @@ export default {
     top: 0
     left: 0
     width: 224px
+    display: flex
+    flex-direction: column
+    padding: 32px 12px 12px
     height: 100%
     background-color: $white
     transition: all 0.3s ease
@@ -130,8 +128,7 @@ export default {
         background-color: $gray-light
     &.collapsed
         width: 72px
-        .sidebar-body
-            padding: 32px 14px 12px
+        padding: 32px 14px 12px
         .text
             display: none
         .menu-item
@@ -157,11 +154,6 @@ export default {
         .menu-link
             padding: 10px
             justify-content: center
-
-.sidebar-body
-    display: flex
-    flex-direction: column
-    padding: 32px 12px 12px
 
 .collapse-button
     position: absolute
@@ -245,15 +237,11 @@ export default {
 .text
     font-size: 14px
     line-height: 20px
-    font-weight: 450
+    font-weight: 500
     color: $black
     transition: all 0.3s ease
 
 .buttons
-    position: absolute
-    bottom: 12px
-    left: 12px
-    width: 200px
     display: flex
     flex-direction: column
     justify-content: center

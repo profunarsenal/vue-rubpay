@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Checkout from '@/views/Checkout';
 import Payments from '@/views/Payments';
 import Payouts from '@/views/Payouts';
-import Settings from '@/views/Payments';
-import Error from '@/views/Payments';
+import Settings from '@/views/Settings';
+import Error from '@/views/Error';
 
 const routes = [
     {
