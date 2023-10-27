@@ -1,17 +1,23 @@
 <template>
     <div class="wrapper">
         <app-sidebar
+            v-if="isDesktop"
             :isCollapsed="isCollapsed"
             @collapse="collapseSidebar"
         />
+        <app-header v-else/>
         <div :class="containerClasses">
             <router-view />
         </div>
-        <app-footer :isCollapsed="isCollapsed"/>
+        <app-footer 
+            v-if="isDesktop" 
+            :isCollapsed="isCollapsed"
+        />
     </div>
 </template>
 
 <script>
+import AppHeader from '@/components/Header/AppHeader';
 import AppSidebar from '@/components/Sidebar/AppSidebar';
 import AppFooter from '@/components/Footer/AppFooter';
 import window from '@/mixins/window';
@@ -22,13 +28,14 @@ export default {
     mixins: [window],
 
     components: {
+        AppHeader,
         AppSidebar,
         AppFooter,
     },
 
     data() {
         return {
-            isCollapsed: false,
+            isSidebarSwitcher: false,
         };
     },
 
@@ -39,16 +46,20 @@ export default {
                 { collapsed: this.isCollapsed },
             ];
         },
+
+        isCollapsedMode() {
+            return this.width <= 1366 ? true : false;
+        },
+
+        isCollapsed() {
+            return this.isCollapsedMode || this.isSidebarSwitcher;
+        },
     },
 
     methods: {
         collapseSidebar(value) {
-            this.isCollapsed = value;
+            this.isSidebarSwitcher = value;
         },
-    },
-
-    created() {
-        this.isCollapsed = this.isDesktop ? false : true;
     },
 };
 </script>
@@ -57,7 +68,7 @@ export default {
 body
     font-family: "Suisse Int'l"
     font-size: 16px
-    font-weight: 400
+    font-weight: 450
     color: $black
     background-color: $white
     min-width: 320px

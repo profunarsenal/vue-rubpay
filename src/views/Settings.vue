@@ -270,6 +270,8 @@ export default {
         width: 100%
 
     .form
-        ::v-deep .button
-            width: 100%
+        ::v-deep 
+            .button,
+            .input
+                width: 100%
 </style>

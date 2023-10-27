@@ -39,9 +39,15 @@
                     </div>
                 </div>
                 <div class="row-item api">
-                    <button @click="toggleApi(item)">
+                    <button 
+                        @click="toggleApi(item)"
+                        class="api-button"
+                    >
                         <img v-if="item.isShowApi" src="/icons/eye-hide.svg">
                         <img v-else src="/icons/eye.svg">
+                        <v-tooltip class="api-tooltip">
+                            {{ tooltipText(item.isShowApi) }}
+                        </v-tooltip>
                     </button>
                     <span
                         v-if="item.isShowApi"
@@ -50,8 +56,8 @@
                         {{ item.api }}
                     </span>
                 </div>
-                <div class="row-item info">
-                    <button>
+                <div class="row-item">
+                    <button class="button-info">
                         <img 
                             v-svg-inline
                             src="/icons/info.svg"
@@ -87,9 +93,14 @@
 
 <script>
 import cloneDeep from 'lodash/cloneDeep';
+import VTooltip from '@/components/common/VTooltip';
 
 export default {
     name: "CheckoutTable",
+
+    components: {
+        VTooltip,
+    },
 
     props: {
         table: {
@@ -111,6 +122,10 @@ export default {
 
         toggleApi(item) {
             item.isShowApi = item.isShowApi ? false : true;
+        },
+
+        tooltipText(isShowApi) {
+            return isShowApi ? 'Скрыть информацию' : 'Показать информацию';
         },
     }
 };
@@ -186,25 +201,25 @@ export default {
     padding: 10px 0
     font-size: 12px
     line-height: 20px
-    white-space: nowrap
+    word-break: break-word
 
 .header-item,
 .row-item
     overflow-x: hidden
     &:nth-child(1)
-        flex: 0 0 80px
+        flex: 0 1 7.07%
     &:nth-child(2)
-        flex: 0 0 220px
-    &:nth-child(3)
-        flex: 0 0 220px
-    &:nth-child(4)
-        flex: 0 0 88px
-    &:nth-child(5)
-        flex: 0 0 148px
-    &:nth-child(6)
-        flex: 0 0 180px
-    &:nth-child(7)
-        flex: 0 0 40px
+        flex: 0 1 16.45%
+    &:nth-child(3) 
+        flex: 0 1 21.38%
+    &:nth-child(4) 
+        flex: 0 1 11.51%
+    &:nth-child(5) 
+        flex: 0 1 13.82%
+    &:nth-child(6) 
+        flex: 0 1 17.93%
+    &:nth-child(7) 
+        flex: 0 1 40px
 
 .balance
     display: flex
@@ -223,14 +238,29 @@ export default {
     display: flex
     gap: 8px
 
+.api-button
+    @media(any-hover:hover)
+        &:hover
+            .api-tooltip
+                opacity: 1
+                visibility: visible
+                pointer-events: all
+
+.api-tooltip
+    top: 3px
+    left: 30px
+
 .api-value
     text-overflow: ellipsis
     white-space: nowrap
     overflow: hidden
     max-width: 100px
 
-.info
-    text-align: center
+.button-info
+    display: flex
+    align-items: center
+    justify-content: center
+    margin: 0 auto
 
 .total
     position: sticky
@@ -249,4 +279,12 @@ export default {
     @media(any-hover:hover)
         &:hover
             background-color: $white
+
+@media(max-width: 1366px)
+    .table
+        overflow-x: auto
+
+    .table-header,
+    .table-content
+        min-width: 1216px
 </style>

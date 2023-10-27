@@ -138,4 +138,7 @@ export default {
     .button
         max-height: 40px
         padding: 10px 16px
+        &.icon-only
+            max-height: 40px
+            max-width: 40px
 </style>

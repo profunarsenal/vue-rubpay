@@ -1,6 +1,7 @@
 @import './fonts'
 @import './null'
 @import './variables'
+@import './datepicker'
 
 .container
     position: relative
@@ -22,3 +23,7 @@
         margin-left: 0
         &.collapsed
             margin-left: 0
+    .inner-scroll
+        position: relative
+        height: calc(100vh - 52px)
+        overflow-y: auto

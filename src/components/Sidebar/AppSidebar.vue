@@ -25,7 +25,9 @@
                     />
                     <span class="text">{{ item.title }}</span>
                 </router-link>
-                <!-- <div class="sidebar-tooltip tooltip">{{ item.title }}</div> -->
+                <v-tooltip class="sidebar-tooltip">
+                    {{ item.title }}
+                </v-tooltip>
             </li>
         </ul>
 
@@ -38,9 +40,11 @@
                     alt="Поддержка" 
                 />
                 <span class="text">Поддержка</span>
-                <!-- <div class="sidebar-tooltip tooltip">Поддержка</div> -->
+                <v-tooltip class="sidebar-tooltip">
+                    Поддержка
+                </v-tooltip>
             </button>
-            <button class="button bm-exit">
+            <button class="button">
                 <img
                     v-svg-inline
                     class="button-icon"
@@ -48,11 +52,14 @@
                     alt="Выйти"
                 />
                 <span class="text">Выйти</span>
-                <!-- <div class="sidebar-tooltip tooltip">Выйти</div> -->
+                <v-tooltip class="sidebar-tooltip">
+                    Выйти
+                </v-tooltip>
             </button>
         </div>
 
         <button
+            v-if="isSwitcher"
             class="collapse-button"
             @click="collapseSidebar"
         >
@@ -61,16 +68,26 @@
                 src="@/assets/img/arrow-tick.svg"
                 alt="Свернуть"
             >
-            <!-- <div class="sidebar-tooltip tooltip">Свернуть</div> -->
+            <v-tooltip class="sidebar-tooltip">
+                Свернуть
+            </v-tooltip>
         </button>
     </aside>
 </template>
 
 <script>
 import { MENU_ITEMS } from '@/helpers/constants';
+import window from '@/mixins/window';
+import VTooltip from '@/components/common/VTooltip';
 
 export default {
     name: "AppHeader",
+
+    mixins: [window],
+
+    components: {
+        VTooltip
+    },
 
     props: {
         isCollapsed: {
@@ -90,6 +107,10 @@ export default {
                 'sidebar',
                 { collapsed: this.isCollapsed },
             ];
+        },
+
+        isSwitcher() {
+            return this.width > 1366 ? true : false;
         },
     },
 
@@ -168,6 +189,10 @@ export default {
     border-radius: 50%
     background-color: $white
     transition: all 0.3s ease
+    .sidebar-tooltip
+        top: -6px
+        left: 32px
+        right: auto
     @media(any-hover:hover)
         &:hover
             .sidebar-tooltip
@@ -177,10 +202,6 @@ export default {
     &:focus,
     &:active
         border: 1px solid $gray-light
-
-.sidebar-tooltip
-    top: -6px
-    left: 32px
 
 .menu
     display: flex

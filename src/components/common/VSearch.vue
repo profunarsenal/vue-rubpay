@@ -30,7 +30,7 @@
 export default {
     name: 'VSearch',
 
-    emits: ['update:modelValue'],
+    emits: ['update:modelValue', 'clear'],
 
     props: {
         modelValue: {
@@ -98,4 +98,18 @@ export default {
         border: 1px solid $blue
     &::placeholder
         color: rgba($gray-dark, 0.60)
+
+@media(max-width: 992px)
+    .input
+        width: 253px
+
+@media(max-width: 767px)
+    .icon,
+    .clear
+        top: 10px
+
+    .input
+        max-height: 40px
+        max-width: 100%
+        padding: 10px 16px 10px 44px
 </style>

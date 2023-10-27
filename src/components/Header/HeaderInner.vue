@@ -1,7 +1,7 @@
 <template>
-    <header class="header-inner">
+    <div class="header-inner">
         <slot></slot>
-    </header>
+    </div>
 </template>
 
 <script>

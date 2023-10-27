@@ -42,7 +42,7 @@ export default {
 
     props: {
         modelValue: {
-            type: [String, Number],
+            type: [String, Number, Array],
             default: ''
         },
 
@@ -79,7 +79,7 @@ export default {
 
     data() {
         return {
-            isFocused: !!this.modelValue,
+            isFocused: false,
         };
     },
 
@@ -90,6 +90,12 @@ export default {
                 { focused: this.isFocused },
                 { error: this.isError },
             ];
+        },
+    },
+
+    watch: {
+        modelValue(value) {
+            this.isFocused = !!value
         },
     },
 
@@ -105,6 +111,10 @@ export default {
         blur(event) {
             this.isFocused = event.target.value ? true : false;
         },
+    },
+
+    created() {
+        this.isFocused = !!this.modelValue;
     },
 };
 </script>

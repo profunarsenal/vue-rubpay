@@ -118,7 +118,7 @@ export default {
 <style lang="sass" scoped>
 .select
     position: relative
-    min-width: 280px
+    min-width: 260px
     &.focused
         .placeholder
             top: 30%

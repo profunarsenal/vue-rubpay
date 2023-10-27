@@ -38,6 +38,10 @@
                     placeholder="Валюта"
                     @select="selectOption($event, 'currency')"
                 />
+                <v-datepicker 
+                    :value="date"
+                    @setDate="setDate"
+                />
             </div>
             <div class="buttons">
                 <v-button type="secondary">
@@ -55,6 +59,7 @@
 import VInput from '@/components/common/VInput';
 import VSelect from '@/components/common/VSelect';
 import VButton from '@/components/common/VButton';
+import VDatepicker from '@/components/common/VDatepicker';
 
 export default {
     name: 'AppFilter',
@@ -63,6 +68,7 @@ export default {
         VInput,
         VSelect,
         VButton,
+        VDatepicker,
     },
 
     props: {
@@ -87,12 +93,17 @@ export default {
                 { name: 'Все', value: 1 },
                 { name: 'Выполнен', value: 2 },
             ],
+            date: '',
         };
     },
 
     methods: {
         selectOption(option, value) {
             this.filters[value] = option;
+        },
+
+        setDate(value) {
+            this.date = value;
         },
     },
 };
@@ -129,4 +140,26 @@ export default {
     gap: 12px
     ::v-deep .button
         flex: 0 1 50%
+
+@media(max-width: 1124px)
+    .filter-wrapper
+        position: static
+
+    .filter
+        top: 80px
+        right: 50%
+        width: 92%
+        transform: translateX(50%)
+
+@media(max-width: 992px)
+    .filter
+        top: 120px
+
+@media(max-width: 767px)
+    .filter
+        top: 174px
+        width: 92%
+
+    .fields
+        grid-template-columns: 1fr
 </style>

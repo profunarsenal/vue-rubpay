@@ -1,16 +1,17 @@
 <template>
-    <header-inner>
+    <div class="inner-scroll">
+        <header-inner>
         <div class="header-body">
             <div class="header-buttons">
                 <v-button
                     type="tertiary"
-                    iconSrc="/icons/plus.svg"
+                    :iconSrc="isVisibleIcon('plus')"
                 >
                     Запросить выплату
                 </v-button>
                 <v-button
                     type="tertiary"
-                    iconSrc="/icons/download.svg"
+                    :iconSrc="isVisibleIcon('download')"
                 >
                     Экспорт
                 </v-button>
@@ -45,9 +46,19 @@
                 />
             </div>
         </div>
-    </header-inner>
-    <main class="payouts">
-    </main>
+        </header-inner>
+        <main class="payouts">
+            <payouts-table
+                v-if="isDesktop"
+                :table="payoutsTable"
+            />
+            <payouts-table-mobile
+                v-else
+                :table="payoutsTable"
+            />
+        </main>
+        <app-pagination class="payouts-pagination"/>
+    </div>
 </template>
 
 <script>
@@ -56,9 +67,16 @@ import VButton from '@/components/common/VButton';
 import VSearch from '@/components/common/VSearch';
 import VSelect from '@/components/common/VSelect';
 import AppFilter from '@/components/Filter/AppFilter';
+import { PAYOUTS_TABLE } from '@/helpers/constants';
+import PayoutsTable from '@/components/Table/PayoutsTable';
+import AppPagination from '@/components/Pagination/AppPagination';
+import PayoutsTableMobile from '@/components/Table/Mobile/PayoutsTable';
+import window from '@/mixins/window';
 
 export default {
     name: 'Payouts',
+
+    mixins: [window],
 
     components: {
         HeaderInner,
@@ -66,6 +84,9 @@ export default {
         VSearch,
         AppFilter,
         VSelect,
+        PayoutsTable,
+        AppPagination,
+        PayoutsTableMobile,
     },
 
     data() {
@@ -97,6 +118,14 @@ export default {
         toggleFilter() {
             this.isFilterOpen = !this.isFilterOpen;
         },
+
+        isVisibleIcon(icon) {
+            return this.isDesktop ? `/icons/${icon}.svg` : '';
+        },
+    },
+
+    created() {
+        this.payoutsTable = PAYOUTS_TABLE;
     },
 };
 </script>
@@ -125,6 +154,7 @@ export default {
             min-height: 44px
             background: rgba($gray-light, 0.15)
         .placeholder
+            color: $gray-dark
             left: 20px
             top: 12px
             font-weight: 500
@@ -162,4 +192,58 @@ export default {
 
 .currencies-value
     font-weight: 500
+
+@media(max-width: 992px)
+    .header-body
+        flex-wrap: wrap
+
+    .header-filters
+        flex: 0 0 100%
+        justify-content: flex-start
+
+    .select-currencies
+        ::v-deep 
+            .list
+                left: -40px
+
+@media(max-width: 767px)
+    .header-filters
+        flex: 1 0 auto
+        ::v-deep
+            .search,
+            .input
+                width: 100%
+
+    .header-buttons
+        flex: 1 1 100%
+        ::v-deep
+            .button
+                padding: 10px 16px
+                flex: 1 1 50%
+                justify-content: center
+
+    .payouts-pagination
+        position: fixed
+        bottom: 0
+        left: 0
+        width: 100%
+        margin-left: 0
+        background-color: $white
+
+    .select-currencies
+        order: 1
+        ::v-deep
+            .field
+                min-height: 40px
+            .placeholder
+                top: 10px
+
+@media(max-width: 576px)
+    .select-currencies
+        flex: 1 1 100%
+        ::v-deep 
+            .list
+                left: 0
+                min-width: 100%
+                max-width: 100%
 </style>
