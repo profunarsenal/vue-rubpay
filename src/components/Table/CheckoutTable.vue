@@ -18,11 +18,8 @@
                 <div class="row-item">{{ item.id }}</div>
                 <div class="row-item">{{ item.name }}</div>
                 <div class="row-item">{{ item.url }}</div>
-                <div class="row-item" key="icon">
-                    <img 
-                        v-svg-inline
-                        :src="setIconActive(item.active)"
-                    >
+                <div class="row-item">
+                    <inline-svg :src="setIconActive(item.active)"/>
                 </div>
                 <div class="row-item balance">
                     <div class="balance-item">
@@ -57,13 +54,19 @@
                     </span>
                 </div>
                 <div class="row-item">
-                    <button class="button-info">
-                        <img 
-                            v-svg-inline
-                            src="/icons/info.svg"
-                        >
+                    <button 
+                        class="button-info"
+                        @click="openInfo"
+                    >
+                        <inline-svg src="/icons/info.svg" />
                     </button>
                 </div>
+                <button 
+                    class="button-edit"
+                    @click="edit"
+                >
+                    <inline-svg src="/icons/edit.svg" />
+                </button>
             </div>
             <div class="table-row total">
                 <div class="row-item">Итого</div>
@@ -127,6 +130,22 @@ export default {
         tooltipText(isShowApi) {
             return isShowApi ? 'Скрыть информацию' : 'Показать информацию';
         },
+
+        openInfo() {
+            this.$store.commit('modal/open', {
+                component: 'ModalCheckoutInfo',
+            });
+        },
+
+        edit() {
+            this.$store.commit('modal/open', {
+                component: 'ModalCheckout',
+                componentData: {
+                    isEdit: true,
+                    apiKey: 't5y6t5',
+                },
+            });
+        },
     }
 };
 </script>
@@ -181,6 +200,10 @@ export default {
     @media(any-hover:hover)
         &:hover
             background-color: rgba($gray-light, 0.10)
+            .button-edit
+                opacity: 1
+                visibility: visible
+                pointer-events: all
     &::before
         content: ""
         position: absolute
@@ -261,6 +284,14 @@ export default {
     align-items: center
     justify-content: center
     margin: 0 auto
+
+.button-edit
+    position: absolute
+    top: 0
+    right: 40px
+    opacity: 0
+    visibility: hidden
+    pointer-events: none
 
 .total
     position: sticky

@@ -26,7 +26,7 @@
 
                 <a class="bot" href="#">
                     <div class="bot-icon">
-                        <img src="@/assets/img/telegram.svg" alt="@RubPayNotifyBot">
+                        <img src="/icons/telegram.svg" alt="@RubPayNotifyBot">
                     </div>
                     <div class="bot-content">
                         <div class="bot-title">Наш телеграм бот</div>
@@ -45,7 +45,7 @@
         <div class="sessions">
             <div class="sessions-header">
                 <h2 class="title">Активные сессии</h2>
-                <button class="sessions-close">Закрыть все сессии кроме текущей</button>
+                <button class="sessions-close" @click="closeSessions">Закрыть все сессии кроме текущей</button>
             </div>
             <ul class="sessions-list">
                 <li
@@ -94,6 +94,15 @@ export default {
                 { id: 4, ip: '5.8.16.148', date: '2023-06-03', time: '17:33:46', isActive: false },
             ],
         };
+    },
+
+    methods: {
+        closeSessions() {
+            this.$store.commit('modal/open', {
+                component: 'ModalCloseSession',
+                positionCenter: true,
+            });
+        }
     },
 };
 </script>

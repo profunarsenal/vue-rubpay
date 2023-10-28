@@ -12,6 +12,7 @@
             :value="modelValue"
             :type="type"
             :readonly="isReadonly"
+            :disabled="isDisabled"
             @focus="focus"
             @blur="blur"
             @input="update"
@@ -24,13 +25,11 @@
             {{ description }}
         </p>
 
-        <div v-if="iconSrc">
-            <img
-                v-svg-inline
-                :src="iconSrc"
-                class="icon"
-            >
-        </div>
+        <inline-svg
+            v-if="iconSrc"
+            class="icon"
+            :src="iconSrc"
+        />
     </div>
 </template>
 
@@ -72,6 +71,11 @@ export default {
         },
 
         isReadonly: {
+            type: Boolean,
+            default: false,
+        },
+
+        isDisabled: {
             type: Boolean,
             default: false,
         },

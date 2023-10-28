@@ -13,6 +13,7 @@
             v-if="isDesktop" 
             :isCollapsed="isCollapsed"
         />
+        <v-modal />
     </div>
 </template>
 
@@ -20,6 +21,7 @@
 import AppHeader from '@/components/Header/AppHeader';
 import AppSidebar from '@/components/Sidebar/AppSidebar';
 import AppFooter from '@/components/Footer/AppFooter';
+import VModal from '@/components/common/VModal';
 import window from '@/mixins/window';
 
 export default {
@@ -31,6 +33,7 @@ export default {
         AppHeader,
         AppSidebar,
         AppFooter,
+        VModal,
     },
 
     data() {

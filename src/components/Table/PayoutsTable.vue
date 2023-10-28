@@ -33,11 +33,8 @@
                 </div>
                 <div class="row-item">{{ item.date }}</div>
                 <div class="row-item">
-                    <button class="button-info">
-                        <img 
-                            v-svg-inline
-                            src="/icons/info.svg"
-                        >
+                    <button class="button-info" @click="openInfo">
+                        <inline-svg src="/icons/info.svg" />
                     </button>
                 </div>
             </div>
@@ -62,6 +59,23 @@ export default {
         return {
             tableItems: cloneDeep(this.table),
         };
+    },
+
+    methods: {
+        openInfo() {
+            this.$store.commit('modal/open', {
+                component: 'ModalPaymentInfo',
+                componentData: {
+                    items: [
+                        { title: 'Номера заказа', value: '52358', key: 'test'},
+                        { title: 'Кошелек', value: '5336 6902 6861 0211', key: 'test'},
+                        { title: 'Дата создания', value: '04.06.23 14:20', key: 'test'},
+                        { title: 'Дата выплаты', value: '04.06.23 14:20', key: 'test'},
+                        { title: 'Сумма зачисления', value: '279₽', key: 'test'}
+                    ],
+                },
+            });
+        },
     },
 };
 </script>

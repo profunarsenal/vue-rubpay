@@ -4,6 +4,7 @@
         <v-button
             type="tertiary"
             iconSrc="/icons/plus.svg"
+            @click="addCheckout"
         >
             Добавить
         </v-button>
@@ -46,6 +47,14 @@ export default {
         CheckoutTable,
         CheckoutTableMobile,
         AppPagination,
+    },
+
+    methods: {
+        addCheckout() {
+            this.$store.commit('modal/open', {
+                component: 'ModalCheckout',
+            });
+        },
     },
 
     created() {

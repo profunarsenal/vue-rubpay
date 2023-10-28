@@ -15,10 +15,10 @@
             />
         </template>
         <template #icon-calendar>
-            <img src="@/assets/img/calendar.svg">
+            <inline-svg class="icon" src="/icons/calendar.svg"/>
         </template>
         <template #icon-clear>
-            <img src="@/assets/img/close.svg">
+            <inline-svg class="icon-close" src="/icons/close.svg"/>
         </template>
     </date-picker>
 </template>
@@ -68,4 +68,16 @@ export default {
 <style lang="sass" scoped>
 .datepicker
     width: 100%
+
+.icon
+    width: 24px
+    height: 24px
+
+.icon-close
+    width: 24px
+    height: 24px
+    fill: rgba($gray-dark, 0.5)
+    @media(any-hover:hover)
+        &:hover
+            fill: $gray-dark
 </style>

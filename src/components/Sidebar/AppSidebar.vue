@@ -17,11 +17,9 @@
                     class="menu-link"
                     :to="item.path"
                 >
-                    <img
-                        v-svg-inline
+                    <inline-svg
                         class="menu-icon"
                         :src="item.icon"
-                        :alt="item.title"
                     />
                     <span class="text">{{ item.title }}</span>
                 </router-link>
@@ -33,23 +31,19 @@
 
         <div class="buttons">
             <button class="button" href="#">
-                <img
-                    v-svg-inline
+                <inline-svg
                     class="button-icon"
-                    src="@/assets/img/telegram-sidebar.svg"
-                    alt="Поддержка" 
+                    src="/icons/telegram-sidebar.svg"
                 />
                 <span class="text">Поддержка</span>
                 <v-tooltip class="sidebar-tooltip">
                     Поддержка
                 </v-tooltip>
             </button>
-            <button class="button">
-                <img
-                    v-svg-inline
+            <button class="button" @click="exit">
+                <inline-svg
                     class="button-icon"
-                    src="@/assets/img/exit.svg"
-                    alt="Выйти"
+                    src="/icons/exit.svg"
                 />
                 <span class="text">Выйти</span>
                 <v-tooltip class="sidebar-tooltip">
@@ -65,7 +59,7 @@
         >
             <img
                 class="collapse-icon"
-                src="@/assets/img/arrow-tick.svg"
+                src="/icons/arrow-tick.svg"
                 alt="Свернуть"
             >
             <v-tooltip class="sidebar-tooltip">
@@ -78,7 +72,7 @@
 <script>
 import { MENU_ITEMS } from '@/helpers/constants';
 import window from '@/mixins/window';
-import VTooltip from '@/components/common/VTooltip';
+import VTooltip from '@/components/common/VTooltip';;
 
 export default {
     name: "AppHeader",
@@ -86,7 +80,7 @@ export default {
     mixins: [window],
 
     components: {
-        VTooltip
+        VTooltip,
     },
 
     props: {
@@ -117,6 +111,13 @@ export default {
     methods: {
         collapseSidebar() {
             this.$emit('collapse', !this.isCollapsed);
+        },
+
+        exit() {
+            this.$store.commit('modal/open', {
+                component: 'ModalExit',
+                positionCenter: true,
+            });
         },
     },
 
@@ -225,7 +226,7 @@ export default {
             right: 12px
             width: 20px
             height: 20px
-            background-image: url("@/assets/img/arrow.svg")
+            background-image: url("~/public/icons/arrow.svg")
             background-size: 20px 20px
             background-repeat: no-repeat
     &.active

@@ -14,33 +14,27 @@
                     :to="item.path"
                     @click="closeMenu"
                 >
-                    <img
-                        v-svg-inline
+                    <inline-svg
                         class="nav-icon"
                         :src="item.icon"
-                        :alt="item.title"
                     />
                     <span>{{ item.title }}</span>
                 </router-link>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <img
-                        v-svg-inline
+                    <inline-svg
                         class="button-icon"
-                        src="@/assets/img/telegram-sidebar.svg"
-                        alt="Поддержка" 
+                        src="/icons/telegram-sidebar.svg"
                     />
                     <span>Поддержка</span>
                 </a>
             </li>
             <li class="nav-item">
-                <button class="nav-link">
-                    <img
-                        v-svg-inline
+                <button class="nav-link" @click="exit">
+                    <inline-svg
                         class="button-icon"
-                        src="@/assets/img/exit.svg"
-                        alt="Выйти"
+                        src="/icons/exit.svg"
                     />
                     <span>Выйти</span>
                 </button>
@@ -50,20 +44,10 @@
             class="burger"
             @click="toggleMenu"
         >
-            <div v-if="isOpen">
-                <img
-                    v-svg-inline
-                    src="/icons/close.svg"
-                    class="burger-icon"
-                >
-            </div>
-            <div v-else>
-                <img
-                    v-svg-inline
-                    src="/icons/burger.svg"
-                    class="burger-icon"
-                >
-            </div>
+            <inline-svg
+                :src="iconSrc"
+                class="burger-icon"
+            />
         </button>
         <div class="copy">
             <a class="text" href="#">Документация API</a>
@@ -84,6 +68,12 @@ export default {
         };
     },
 
+    computed: {
+        iconSrc() {
+            return this.isOpen ? '/icons/close.svg' : '/icons/burger.svg'
+        },
+    },
+
     methods: {
         toggleMenu() {
             this.isOpen = !this.isOpen;
@@ -91,6 +81,13 @@ export default {
         
         closeMenu() {
             this.isOpen = false;
+        },
+
+        exit() {
+            this.$store.commit('modal/open', {
+                component: 'ModalExit',
+                positionCenter: true,
+            });
         },
     },
 
@@ -181,7 +178,7 @@ export default {
                 right: 12px
                 width: 20px
                 height: 20px
-                background-image: url("@/assets/img/arrow.svg")
+                background-image: url("~/public/icons/arrow.svg")
                 background-size: 20px 20px
                 background-repeat: no-repeat
             .nav-icon

@@ -230,7 +230,7 @@ export default {
     &.selected
         background-color: rgba($gray-light, 0.40)
         &::after
-            content: url("@/assets/img/selected.svg")
+            content: url("~/public/icons/selected.svg")
             position: absolute
             top: 12px
             right: 16px

@@ -6,12 +6,14 @@
                 <v-button
                     type="tertiary"
                     :iconSrc="isVisibleIcon('plus')"
+                    @click="createPayment"
                 >
                     Создать платеж
                 </v-button>
                 <v-button
                     type="tertiary"
                     :iconSrc="isVisibleIcon('download')"
+                    @click="exportPayment"
                 >
                     Экспорт
                 </v-button>
@@ -92,6 +94,18 @@ export default {
 
         isVisibleIcon(icon) {
             return this.isDesktop ? `/icons/${icon}.svg` : '';
+        },
+
+        createPayment() {
+            this.$store.commit('modal/open', {
+                component: 'ModalCreatePayment',
+            });
+        },
+
+        exportPayment() {
+            this.$store.commit('modal/open', {
+                component: 'ModalExport',
+            });
         },
     },
 

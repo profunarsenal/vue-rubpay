@@ -84,6 +84,7 @@
                 <div class="buttons">
                     <v-button
                         type="outline"
+                        @click="openInfo"
                     >
                         Подробнее
                     </v-button>
@@ -124,6 +125,20 @@ export default {
     },
 
     methods: {
+        openInfo() {
+            this.$store.commit('modal/open', {
+                component: 'ModalPaymentInfo',
+                componentData: {
+                    items: [
+                        { title: 'Номера заказа', value: '52358', key: 'test'},
+                        { title: 'Кошелек', value: '5336 6902 6861 0211', key: 'test'},
+                        { title: 'Дата создания', value: '04.06.23 14:20', key: 'test'},
+                        { title: 'Дата выплаты', value: '04.06.23 14:20', key: 'test'},
+                        { title: 'Сумма зачисления', value: '279₽', key: 'test'}
+                    ],
+                },
+            });
+        },
     },
 };
 </script>

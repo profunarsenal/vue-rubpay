@@ -1,20 +1,18 @@
 <template>
     <div class="search">
-        <img
-            v-svg-inline
-            src="/icons/search.svg"
+        <inline-svg
             class="icon"
-        >
+            src="/icons/search.svg"
+        />
         <button
             v-if="modelValue"
             class="clear"
             @click="$emit('clear')"
         >
-            <img
-                v-svg-inline
-                src="/icons/close.svg"
+            <inline-svg
                 class="clear-icon"
-            >
+                src="/icons/close.svg"
+            />
         </button>
         <input 
             class="input"

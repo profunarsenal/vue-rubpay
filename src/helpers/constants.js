@@ -471,3 +471,110 @@ export const PAYOUTS_TABLE = {
         },
     ],
 };
+
+export const CHECKOUT_INFO_TABLE = {
+    header: [
+        { title: 'Тариф' },
+        { title: 'Лимит' },
+        { title: 'Комиссия' },
+    ],
+
+    content: [
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+        {
+            id: 1,
+            tariff: 'CARD P2P (PAYMENT_METHOD: 1, CURRENCY: 1)',
+            limit: '100 — 300,000₽',
+            comission: '7% + 0₽',
+        },
+    ],
+};

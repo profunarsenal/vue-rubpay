@@ -82,6 +82,7 @@
                 <div class="buttons">
                     <v-button
                         type="outline"
+                        @click="openInfo"
                     >
                         Подробнее
                     </v-button>
@@ -134,6 +135,12 @@ export default {
         toggleApi(item) {
             item.isShowApi = item.isShowApi ? false : true;
         },
+
+        openInfo() {
+            this.$store.commit('modal/open', {
+                component: 'ModalCheckoutInfo',
+            });
+        }
     },
 };
 </script>
@@ -179,7 +186,7 @@ export default {
     font-size: 12px
     line-height: 20px
     overflow: hidden
-    word-break: break-all
+    word-break: break-word
 
 .balance
     display: flex

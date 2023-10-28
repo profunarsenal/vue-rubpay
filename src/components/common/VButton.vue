@@ -5,17 +5,11 @@
         @click="$emit('onClick')"
     >
         <slot />
-        <div 
+        <inline-svg
             v-if="iconSrc"
             class="icon"
-        >
-            <img
-                v-svg-inline
-                :src="iconSrc"
-                alt="Кнопка"
-                class="icon"
-            >
-        </div>
+            :src="iconSrc"
+        />
     </button>
 </template>
 
