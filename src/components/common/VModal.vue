@@ -4,7 +4,10 @@ transition(name="modal")
         v-if="isOpened"
         :class="modalClasses"
     )
-        .wrapper(v-click-outside="close")
+        .wrapper(
+            v-if="component"
+            v-click-outside="close"
+        )
             button.close(@click="close")
                 inline-svg.icon-close(src="/icons/close.svg")
             component(
