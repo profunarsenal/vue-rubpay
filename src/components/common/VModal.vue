@@ -4,13 +4,10 @@ transition(name="modal")
         v-if="isOpened"
         :class="modalClasses"
     )
-        .wrapper(v-click-outside="close")
-            button.close(@click="close")
-                inline-svg.icon-close(src="/icons/close.svg")
-            component(
-                :is="component"
-                :componentData="componentData"
-            )
+        component(
+            :is="component"
+            :componentData="componentData"
+        )
 </template>
 
 <script>
@@ -43,10 +40,7 @@ export default {
         },
 
         modalClasses() {
-            return {
-                center: this.positionCenter,
-                open: this.component,
-            };
+            return { center: this.positionCenter };
         },
     },
 
@@ -72,11 +66,6 @@ export default {
         display: flex
         align-items: center
         justify-content: center
-    &.open
-        .wrapper
-            opacity: 1
-            visibility: visible
-            pointer-events: all
 
 .wrapper
     position: relative
