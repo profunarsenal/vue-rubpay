@@ -71,7 +71,7 @@ body
     font-size: 16px
     font-weight: 400
     color: $black
-    background-color: red
+    background-color: $white
     min-width: 320px
 
 #app
