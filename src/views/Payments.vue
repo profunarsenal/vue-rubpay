@@ -19,7 +19,10 @@
                 </v-button>
             </div>
             <div class="header-filters">
-                <div class="filter-block">
+                <div
+                    class="filter-block"
+                    v-click-outside="closeFilter"
+                >
                     <v-button
                         type="outline"
                         iconSrc="/icons/filter.svg"
@@ -27,7 +30,7 @@
                         @click="toggleFilter"
                     >
                     </v-button>
-                    <app-filter :isOpen="isFilterOpen"/>
+                    <app-filter :isOpened="isFilterOpened" />
                 </div>
                 <v-search
                     v-model="searchValue"
@@ -79,7 +82,7 @@ export default {
     data() {
         return {
             searchValue: '',
-            isFilterOpen: false,
+            isFilterOpened: false,
         };
     },
 
@@ -89,7 +92,11 @@ export default {
         },
 
         toggleFilter() {
-            this.isFilterOpen = !this.isFilterOpen;
+            this.isFilterOpened = !this.isFilterOpened;
+        },
+
+        closeFilter() {
+            this.isFilterOpened = false;
         },
 
         isVisibleIcon(icon) {

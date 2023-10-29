@@ -1,6 +1,6 @@
 <template>
-    <form class="content">
-        <h4 class="title">Добавить новую кассу</h4>
+    <div class="content">
+        <h4 class="title">{{ title }}</h4>
         <div class="labels">
             <v-input
                 placeholder="Название"
@@ -41,7 +41,7 @@
                 Добавить
             </v-button>
         </div>
-    </form>
+    </div>
 </template>
 
 <script>
@@ -83,6 +83,10 @@ export default {
     computed: {
         isEdit() {
             return this.componentData?.isEdit;
+        },
+
+        title() {
+            return this.isEdit ? 'Редактировать кассу' : 'Добавить новую кассу';
         },
     },
 

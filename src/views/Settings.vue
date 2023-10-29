@@ -2,7 +2,7 @@
     <main class="settings">
         <div class="info">
             <h2 class="title">Основная информация</h2>
-            <form class="form">
+            <div class="form">
 
                 <div class="labels">
                     <v-input
@@ -40,7 +40,7 @@
                 >
                     Сохранить
                 </v-button>
-            </form>
+            </div>
         </div>
         <div class="sessions">
             <div class="sessions-header">

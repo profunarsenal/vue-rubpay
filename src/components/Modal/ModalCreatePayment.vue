@@ -1,5 +1,5 @@
 <template>
-    <form class="content">
+    <div class="content">
         <h4 class="title">Новый платеж</h4>
         <div class="labels">
             <v-select 
@@ -29,7 +29,7 @@
                 Создать
             </v-button>
         </div>
-    </form>
+    </div>
 </template>
 
 <script>

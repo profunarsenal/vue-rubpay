@@ -1,18 +1,25 @@
 <template>
-    <div :class="modalClasses">
-        <div class="wrapper">
-            <button class="close" @click="close">
-                <inline-svg
-                    class="icon-close"
-                    src="/icons/close.svg"
+    <transition name="modal">
+        <div v-if="isOpened"
+            :class="modalClasses"
+        >
+            <div
+                class="wrapper"
+                v-click-outside="close"
+            >
+                <button class="close" @click="close">
+                    <inline-svg
+                        class="icon-close"
+                        src="/icons/close.svg"
+                    />
+                </button>
+                <component
+                    :is="component"
+                    :componentData="componentData"
                 />
-            </button>
-            <component
-                :is="component"
-                :componentData="componentData"
-            />
+            </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -35,7 +42,7 @@ export default {
 
     computed: {
         ...mapState({
-            isOpen: state => state.modal.isOpen,
+            isOpened: state => state.modal.isOpened,
             componentData: state => state.modal.componentData,
             component: state => state.modal.component,
             positionCenter: state => state.modal.positionCenter,
@@ -44,7 +51,6 @@ export default {
         modalClasses() {
             return [
                 'modal',
-                { open: this.isOpen },
                 { center: this.positionCenter }
             ];
         },
@@ -54,6 +60,10 @@ export default {
         close() {
             this.$store.commit('modal/close');
         },
+
+        closeOutside() {
+            console.log(this.isOpened)
+        }
     },
 };
 </script>
@@ -66,20 +76,8 @@ export default {
     left: 0
     width: 100%
     height: 100%
-    opacity: 0
-    visibility: hidden
-    pointer-events: none
-    transition: none
     background-color: rgba($black, 0.5)
     overflow-y: scroll
-    &.open
-        opacity: 1
-        visibility: visible
-        pointer-events: all
-        transition: all 0.3s ease
-        .wrapper
-            top: 0
-            transition: all 0.3s ease
     &.center
         display: flex
         align-items: center
@@ -87,13 +85,13 @@ export default {
 
 .wrapper
     position: relative
-    top: -50px
+    top: 0
     width: min-content
     margin: 40px auto
     padding: 20px 16px 16px 16px
     background-color: $white
     border-radius: 28px
-    transition: none
+    transition: all 0.3s ease
 
 .close
     position: absolute
@@ -112,6 +110,20 @@ export default {
     height: 24px
     fill: rgba($white, 0.7)
     transition: all 0.3s ease
+
+.modal-enter-active,
+.modal-leave-active
+    transition: opacity 0.3s ease
+
+.modal-enter-from,
+.modal-leave-to
+    opacity: 0
+    .wrapper
+        top: -50px
+
+.modal-enter-to,
+.modal-leave-from
+    opacity: 1
 
 @media(max-width: 767px)
     .wrapper

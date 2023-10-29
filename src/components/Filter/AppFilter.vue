@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isOpen" class="filter-wrapper">
+    <div v-if="isOpened" class="filter-wrapper">
         <div class="filter">
             <div class="fields">
                 <v-input
@@ -72,7 +72,7 @@ export default {
     },
 
     props: {
-        isOpen: {
+        isOpened: {
             type: Boolean,
             default: false,
         },

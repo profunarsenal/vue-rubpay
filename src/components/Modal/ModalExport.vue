@@ -1,5 +1,5 @@
 <template>
-    <form class="content">
+    <div class="content">
         <h4 class="title">Экспорт данных</h4>
         <div class="labels">
             <v-select 
@@ -27,7 +27,7 @@
                 Выгрузить
             </v-button>
         </div>
-    </form>
+    </div>
 </template>
 
 <script>

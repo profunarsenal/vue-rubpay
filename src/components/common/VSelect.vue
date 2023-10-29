@@ -1,5 +1,8 @@
 <template>
-    <div :class="selectClasses">
+    <div
+        :class="selectClasses"
+        v-click-outside="close"
+    >
         <p 
             v-if="placeholder"
             class="placeholder"
@@ -79,7 +82,7 @@ export default {
 
     data() {
         return {
-            isOpen: false,
+            isOpened: false,
         };
     },
 
@@ -87,20 +90,20 @@ export default {
         selectClasses() {
             return [
                 'select',
-                { open: this.isOpen },
+                { open: this.isOpened },
                 { error: this.isError },
                 { focused: this.isFocused && !this.isReadonly },
             ];
         },
 
         isFocused() {
-            return this.isOpen || !!this.selected.name;
+            return this.isOpened || !!this.selected.name;
         },
     },
 
     methods: {
         toggleSelect() {
-            this.isOpen = !this.isOpen;
+            this.isOpened = !this.isOpened;
         },
 
         selectOption(option) {
@@ -108,8 +111,12 @@ export default {
                 return;
             }
 
-            this.isOpen = false;
+            this.isOpened = false;
             this.$emit('select', option);
+        },
+
+        close() {
+            this.isOpened = false;
         },
     },
 };

@@ -2,7 +2,7 @@ export default {
     namespaced: true,
 
     state: {
-        isOpen: false,
+        isOpened: false,
         component: null,
         componentData: {},
         positionCenter: false,
@@ -13,14 +13,14 @@ export default {
             state.component = payload.component;
             state.componentData = payload.componentData;
             state.positionCenter = payload.positionCenter;
-            state.isOpen = true;
+            state.isOpened = true;
         },
 
         close(state) {
             state.component = null;
             state.componentData = {};
             state.positionCenter = false;
-            state.isOpen = false;
+            state.isOpened = false;
         },
     },
 }

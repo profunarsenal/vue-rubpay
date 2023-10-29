@@ -1,5 +1,5 @@
 <template>
-    <header :class="['header', {open: isOpen}]">
+    <header :class="['header', {open: isOpened}]">
         <div class="logo">
             <img src="/icons/logo.svg" alt="Логотип">
         </div>
@@ -64,23 +64,23 @@ export default {
 
     data() {
         return {
-            isOpen: false,
+            isOpened: false,
         };
     },
 
     computed: {
         iconSrc() {
-            return this.isOpen ? '/icons/close.svg' : '/icons/burger.svg'
+            return this.isOpened ? '/icons/close.svg' : '/icons/burger.svg'
         },
     },
 
     methods: {
         toggleMenu() {
-            this.isOpen = !this.isOpen;
+            this.isOpened = !this.isOpened;
         },
         
         closeMenu() {
-            this.isOpen = false;
+            this.isOpened = false;
         },
 
         exit() {
