@@ -98,9 +98,6 @@ export default {
 .wrapper
     position: relative
     top: 0
-    opacity: 0
-    visibility: hidden
-    pointer-events: none
     width: min-content
     margin: 40px auto
     padding: 20px 16px 16px 16px

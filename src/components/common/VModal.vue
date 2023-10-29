@@ -67,37 +67,6 @@ export default {
         align-items: center
         justify-content: center
 
-.wrapper
-    position: relative
-    top: 0
-    opacity: 0
-    visibility: hidden
-    pointer-events: none
-    width: min-content
-    margin: 40px auto
-    padding: 20px 16px 16px 16px
-    background-color: $white
-    border-radius: 28px
-    transition: all 0.3s ease
-
-.close
-    position: absolute
-    width: 24px
-    height: 24px
-    top: -18px
-    right: -18px
-    background-color: transparent
-    @media(any-hover:hover)
-        &:hover
-            .icon-close
-                fill: $white
-
-.icon-close
-    width: 24px
-    height: 24px
-    fill: rgba($white, 0.7)
-    transition: all 0.3s ease
-
 .modal-enter-active,
 .modal-leave-active
     transition: opacity 0.3s ease
@@ -111,13 +80,4 @@ export default {
 .modal-enter-to,
 .modal-leave-from
     opacity: 1
-
-@media(max-width: 767px)
-    .wrapper
-        width: 90%
-    .close
-        top: -18px
-        right: -14px
-    .icon-close
-        fill: $white
 </style>
