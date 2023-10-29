@@ -13,7 +13,9 @@ export default {
             state.component = payload.component;
             state.componentData = payload.componentData;
             state.positionCenter = payload.positionCenter;
-            state.isOpened = true;
+            setTimeout(() => {
+                state.isOpened = true;
+            }, 100)
         },
 
         close(state) {
