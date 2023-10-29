@@ -42,7 +42,7 @@ export default {
         modalClasses() {
             return {
                 center: this.positionCenter,
-                open: this.isOpened,
+                open: this.component,
             };
         },
     },
