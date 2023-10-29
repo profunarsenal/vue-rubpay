@@ -79,7 +79,7 @@ export default {
     padding: 11.5px 0
     color: $gray-dark
     font-size: 14px
-    font-weight: 500
+    font-weight: 450
     line-height: 20px
     white-space: nowrap
 

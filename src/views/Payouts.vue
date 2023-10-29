@@ -171,7 +171,6 @@ export default {
             color: $gray-dark
             left: 20px
             top: 12px
-            font-weight: 500
             transform: translateY(0)
         .icon
             top: 10px
@@ -201,11 +200,11 @@ export default {
     align-items: center
 
 .currencies-name
-    font-weight: 500
+    font-weight: 450
     color: $gray-dark
 
 .currencies-value
-    font-weight: 500
+    font-weight: 450
 
 @media(max-width: 992px)
     .header-body

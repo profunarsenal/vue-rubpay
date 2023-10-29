@@ -259,7 +259,7 @@ export default {
 .text
     font-size: 14px
     line-height: 20px
-    font-weight: 500
+    font-weight: 450
     color: $black
     transition: all 0.3s ease
 

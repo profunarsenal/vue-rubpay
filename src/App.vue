@@ -71,7 +71,7 @@ export default {
 body
     font-family: "Suisse Int'l"
     font-size: 16px
-    font-weight: 450
+    font-weight: 400
     color: $black
     background-color: $white
     min-width: 320px

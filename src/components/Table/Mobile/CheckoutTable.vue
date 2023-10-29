@@ -88,6 +88,7 @@
                     </v-button>
                     <v-button
                         type="outline"
+                        @click="edit"
                     >
                         Редактировать
                     </v-button>
@@ -140,7 +141,17 @@ export default {
             this.$store.commit('modal/open', {
                 component: 'ModalCheckoutInfo',
             });
-        }
+        },
+
+        edit() {
+            this.$store.commit('modal/open', {
+                component: 'ModalCheckout',
+                componentData: {
+                    isEdit: true,
+                    apiKey: 't5y6t5',
+                },
+            });
+        },
     },
 };
 </script>

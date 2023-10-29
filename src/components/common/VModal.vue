@@ -2,7 +2,10 @@
     <div :class="modalClasses">
         <div class="wrapper">
             <button class="close" @click="close">
-                <img src="/icons/close.svg/">
+                <inline-svg
+                    class="icon-close"
+                    src="/icons/close.svg"
+                />
             </button>
             <component
                 :is="component"
@@ -99,6 +102,16 @@ export default {
     top: -18px
     right: -18px
     background-color: transparent
+    @media(any-hover:hover)
+        &:hover
+            .icon-close
+                fill: $white
+
+.icon-close
+    width: 24px
+    height: 24px
+    fill: rgba($white, 0.7)
+    transition: all 0.3s ease
 
 @media(max-width: 767px)
     .wrapper
@@ -106,4 +119,6 @@ export default {
     .close
         top: -18px
         right: -14px
+    .icon-close
+        fill: $white
 </style>

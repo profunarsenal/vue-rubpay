@@ -56,7 +56,7 @@ export default {
 .button
     position: relative
     padding: 12px 24px
-    font-weight: 500
+    font-weight: 450
     font-size: 14px
     line-height: 20px
     border-radius: 100px

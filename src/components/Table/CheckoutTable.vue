@@ -14,6 +14,7 @@
                 v-for="item in tableItems.content" 
                 :key="item.id" 
                 class="table-row"
+                @click="openInfo"
             >
                 <div class="row-item">{{ item.id }}</div>
                 <div class="row-item">{{ item.name }}</div>
@@ -37,12 +38,14 @@
                 </div>
                 <div class="row-item api">
                     <button 
-                        @click="toggleApi(item)"
+                        @click.stop="toggleApi(item)"
                         class="api-button"
                     >
-                        <img v-if="item.isShowApi" src="/icons/eye-hide.svg">
-                        <img v-else src="/icons/eye.svg">
-                        <v-tooltip class="api-tooltip">
+                        <inline-svg
+                            class="icon"
+                            :src="iconSrc(item.isShowApi)" 
+                        />
+                        <v-tooltip class="tooltip-api">
                             {{ tooltipText(item.isShowApi) }}
                         </v-tooltip>
                     </button>
@@ -56,16 +59,28 @@
                 <div class="row-item">
                     <button 
                         class="button-info"
-                        @click="openInfo"
+                        @click.stop="openInfo"
                     >
-                        <inline-svg src="/icons/info.svg" />
+                        <inline-svg
+                            class="icon"
+                            src="/icons/info.svg" 
+                        />
                     </button>
                 </div>
                 <button 
                     class="button-edit"
-                    @click="edit"
+                    @click.stop="edit"
                 >
-                    <inline-svg src="/icons/edit.svg" />
+                    <inline-svg 
+                        class="icon" 
+                        src="/icons/edit.svg"
+                    />
+                    <v-tooltip 
+                        class="tooltip-edit"
+                        position="right"
+                    >
+                        Редактировать кассу
+                    </v-tooltip>
                 </button>
             </div>
             <div class="table-row total">
@@ -146,6 +161,10 @@ export default {
                 },
             });
         },
+
+        iconSrc(isShowApi) {
+            return isShowApi ? '/icons/eye-hide.svg' : '/icons/eye.svg'
+        },
     }
 };
 </script>
@@ -185,7 +204,7 @@ export default {
     padding: 11.5px 0
     color: $gray-dark
     font-size: 14px
-    font-weight: 500
+    font-weight: 450
     line-height: 20px
     white-space: nowrap
 
@@ -244,6 +263,13 @@ export default {
     &:nth-child(7) 
         flex: 0 1 40px
 
+.icon
+    transition: all 0.3s ease
+    @media(any-hover:hover)
+        &:hover
+            fill: $blue
+            fill-opacity: 1
+
 .balance
     display: flex
     flex-direction: column
@@ -264,12 +290,12 @@ export default {
 .api-button
     @media(any-hover:hover)
         &:hover
-            .api-tooltip
+            .tooltip-api
                 opacity: 1
                 visibility: visible
                 pointer-events: all
 
-.api-tooltip
+.tooltip-api
     top: 3px
     left: 30px
 
@@ -292,6 +318,16 @@ export default {
     opacity: 0
     visibility: hidden
     pointer-events: none
+    @media(any-hover:hover)
+        &:hover
+            .tooltip-edit
+                opacity: 1
+                visibility: visible
+                pointer-events: all
+
+.tooltip-edit
+    top: 3px
+    right: 30px
 
 .total
     position: sticky

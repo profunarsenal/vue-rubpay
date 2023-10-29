@@ -68,7 +68,7 @@ export default {
     flex: 1 1 auto
 
 .checkout-table
-    height: calc(100vh - 132px)
+    height: calc(100vh - 128px)
     overflow-y: auto
 
 @media(max-width: 767px)

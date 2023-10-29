@@ -173,7 +173,7 @@ export default {
 
 .sessions-close
     display: inline-block
-    font-weight: 500
+    font-weight: 450
     font-size: 12px
     line-height: 20px
     color: $blue

@@ -72,9 +72,14 @@ export default {
     height: 20px
     transition: all 0.3s ease
     background-color: transparent
+    @media(any-hover:hover)
+        &:hover
+            .clear-icon
+                fill: $gray-dark
 
 .clear-icon
-    fill: #8A8E9899
+    fill: rgba($gray-dark, 0.6)
+    transition: all 0.3s ease
 
 .input
     width: 248px

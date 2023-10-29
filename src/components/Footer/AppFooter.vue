@@ -53,7 +53,7 @@ export default {
     justify-content: space-between
 
 .text
-    font-weight: 500
+    font-weight: 450
     font-size: 12px
     line-height: 20px
     color: $gray-dark

@@ -1,5 +1,5 @@
 <template>
-    <div class="tooltip">
+    <div :class="['tooltip', `tooltip-${position}`]">
         <slot></slot>
     </div>
 </template>
@@ -7,6 +7,13 @@
 <script>
 export default {
     name: 'VTooltip',
+
+    props: {
+        position: {
+            type: String,
+            default: 'left',
+        },
+    },
 };
 </script>
 
@@ -28,10 +35,15 @@ export default {
     &::after
         content: ''
         position: absolute
-        top: 50%
-        left: -6px
         background-color: $gray-dark
         width: 9px
         height: 9px
+        top: 50%
         transform: rotate(45deg) translateY(-50%)
+    &-left
+        &::after
+            left: -6px
+    &-right
+        &::after
+            right: 0
 </style>

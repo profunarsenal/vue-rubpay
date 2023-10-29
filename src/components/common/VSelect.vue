@@ -218,7 +218,7 @@ export default {
     padding: 12px 16px
     border-radius: 12px
     font-size: 14px
-    font-weight: 500
+    font-weight: 450
     line-height: 20px
     cursor: pointer
     transition: all 0.4s ease

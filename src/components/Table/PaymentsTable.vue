@@ -14,6 +14,7 @@
                 v-for="item in tableItems.content" 
                 :key="item.id" 
                 class="table-row"
+                @click="openInfo"
             >
                 <div class="row-item">{{ item.id }}</div>
                 <div class="row-item">{{ item.order }}</div>
@@ -30,8 +31,14 @@
                 <div class="row-item">{{ item.checkId }}</div>
                 <div class="row-item">{{ item.uid }}</div>
                 <div class="row-item">
-                    <button class="button-info" @click="openInfo">
-                        <inline-svg src="/icons/info.svg" />
+                    <button
+                        class="button-info"
+                        @click.stop="openInfo"
+                    >
+                        <inline-svg
+                            class="icon"
+                            src="/icons/info.svg" 
+                        />
                     </button>
                 </div>
             </div>
@@ -125,7 +132,7 @@ export default {
     padding: 11.5px 0
     color: $gray-dark
     font-size: 14px
-    font-weight: 500
+    font-weight: 450
     line-height: 20px
     white-space: nowrap
 
@@ -190,6 +197,13 @@ export default {
     align-items: center
     justify-content: center
     margin: 0 auto
+
+.icon
+    transition: all 0.3s ease
+    @media(any-hover:hover)
+        &:hover
+            fill: $blue
+            fill-opacity: 1
 
 .status
     padding: 6px 12px
