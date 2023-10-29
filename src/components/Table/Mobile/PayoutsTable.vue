@@ -1,97 +1,45 @@
-<template>
-    <div class="table">
-        <ul class="list">
-            <li 
-                v-for="item in tableItems.content" 
-                :key="item.id" 
-                class="item"
-            >
-                <div 
-                    v-for="key in headerItems" 
-                    :key="key.title" 
-                    class="row"
-                >
-                    <div class="title">{{ key.title }}</div>
+<template lang="pug">
+.table
+    ul.list
+        li.item(
+            v-for="item in tableItems.content" 
+            :key="item.id"
+        )
+            .row(
+                v-for="key in headerItems" 
+                :key="key.title"
+            )
+                .title {{ key.title }}
 
-                    <div 
-                        v-if="key.title === 'ID'" 
-                        class="value"
-                    >
-                        <div>{{ item.id }}</div>
-                        <div class="api">API</div>
-                    </div>
+                .value(v-if="key.title === 'ID'")
+                    span {{ item.id }}
+                    .api API
 
-                    <div 
-                        v-if="key.title === 'Касса'" 
-                        class="value"
-                    >
-                        <div>{{ item.cashbox }}</div>
-                    </div>
+                .value(v-if="key.title === 'Касса'") {{ item.cashbox }}
 
-                    <div 
-                        v-if="key.title === 'Заказ'" 
-                        class="value"
-                    >
-                        <div>{{ item.order }}</div>
-                    </div>
+                .value(v-if="key.title === 'Заказ'") {{ item.order }}
 
-                    <div 
-                        v-if="key.title === 'Списано'" 
-                        class="value"
-                    >
-                        <div>{{ item.writtenOff }}</div>
-                    </div>
+                .value(v-if="key.title === 'Списано'") {{ item.writtenOff }}
 
-                    <div 
-                        v-if="key.title === 'Зачислено'" 
-                        class="value"
-                    >
-                        <div>{{ item.enrolled }}</div>
-                    </div>
+                .value(v-if="key.title === 'Зачислено'") {{ item.enrolled }}
 
-                    <div 
-                        v-if="key.title === 'Способ выплаты'" 
-                        class="value"
-                    >
-                        <div>{{ item.payMethod }}</div>
-                    </div>
+                .value(v-if="key.title === 'Способ выплаты'") {{ item.payMethod }}
 
-                    <div 
-                        v-if="key.title === 'Кошелек'" 
-                        class="value"
-                    >
-                        <div class="wallet">
-                            <div>{{ item.wallet.number }}</div>
-                            <div class="system">{{ item.wallet.system }}</div>
-                        </div>
-                    </div>
+                .value(v-if="key.title === 'Кошелек'")
+                    .wallet
+                        span {{ item.wallet.number }}
+                        .system {{ item.wallet.system }}
 
-                    <div 
-                        v-if="key.title === 'Статус'" 
-                        class="value"
-                    >
-                        <div class="status success">{{ item.status }}</div>
-                    </div>
+                .value(v-if="key.title === 'Статус'")
+                    .status.success {{ item.status }} 
 
-                    <div 
-                        v-if="key.title === 'Дата'" 
-                        class="value"
-                    >
-                        <div>{{ item.date }}</div>
-                    </div>
+                .value(v-if="key.title === 'Дата'") {{ item.date }}
 
-                </div>
-                <div class="buttons">
-                    <v-button
-                        type="outline"
-                        @click="openInfo"
-                    >
-                        Подробнее
-                    </v-button>
-                </div>
-            </li>
-        </ul>
-    </div>
+            .buttons
+                v-button(
+                    type="outline"
+                    @click="openInfo"
+                ) Подробнее
 </template>
 
 <script>

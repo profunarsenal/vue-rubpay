@@ -1,36 +1,23 @@
-<template>
-    <div :class="inputClasses">
-        <p 
-            v-if="placeholder"
-            class="placeholder"
-        >
-            {{ placeholder }}
-        </p>
+<template lang="pug">
+.input(:class="inputClasses")
+    p.placeholder(v-if="placeholder") {{ placeholder }}
 
-        <input
-            class="field"
-            :value="modelValue"
-            :type="type"
-            :readonly="isReadonly"
-            :disabled="isDisabled"
-            @focus="focus"
-            @blur="blur"
-            @input="update"
-        >
+    input.field(
+        :value="modelValue"
+        :type="type"
+        :readonly="isReadonly"
+        :disabled="isDisabled"
+        @focus="focus"
+        @blur="blur"
+        @input="update"
+    )
 
-        <p 
-            v-if="description" 
-            class="description"
-        >
-            {{ description }}
-        </p>
+    p.description(v-if="description") {{ description }}
 
-        <inline-svg
-            v-if="iconSrc"
-            class="icon"
-            :src="iconSrc"
-        />
-    </div>
+    inline-svg.icon(
+        v-if="iconSrc"
+        :src="iconSrc"
+    )
 </template>
 
 <script>
@@ -90,7 +77,6 @@ export default {
     computed: {
         inputClasses() {
             return [
-                'input',
                 { focused: this.isFocused },
                 { error: this.isError },
             ];

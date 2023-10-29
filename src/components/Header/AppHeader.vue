@@ -1,59 +1,40 @@
-<template>
-    <header :class="['header', {open: isOpened}]">
-        <div class="logo">
-            <img src="/icons/logo.svg" alt="Логотип">
-        </div>
-        <ul class="navigation">
-            <li 
-                v-for="item in menuItems" 
-                :key="item.title" 
-                :class="['nav-item', { active: item.path === $route.path}]"
-            >
-                <router-link 
-                    class="nav-link"
-                    :to="item.path"
-                    @click="closeMenu"
-                >
-                    <inline-svg
-                        class="nav-icon"
-                        :src="item.icon"
-                    />
-                    <span>{{ item.title }}</span>
-                </router-link>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <inline-svg
-                        class="button-icon"
-                        src="/icons/telegram-sidebar.svg"
-                    />
-                    <span>Поддержка</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link" @click="exit">
-                    <inline-svg
-                        class="button-icon"
-                        src="/icons/exit.svg"
-                    />
-                    <span>Выйти</span>
-                </button>
-            </li>
-        </ul>
-        <button
-            class="burger"
-            @click="toggleMenu"
-        >
-            <inline-svg
-                :src="iconSrc"
-                class="burger-icon"
-            />
-        </button>
-        <div class="copy">
-            <a class="text" href="#">Документация API</a>
-            <span class="text">© 2023 RubPay, Inc</span>
-        </div>
-    </header>
+<template lang="pug">
+header.header(:class="{open: isOpened}")
+    .logo
+        img(src="/icons/logo.svg")
+    ul.navigation
+        li.nav-item(
+            v-for="item in menuItems" 
+            :key="item.title" 
+            :class="{ active: item.path === $route.path}"
+        )
+            router-link.nav-link(
+                :to="item.path"
+                @click="closeMenu"
+            )
+                inline-svg.nav-icon(:src="item.icon")
+                span {{ item.title }}
+        li.nav-item
+            a.nav-link(
+                href="#"
+                target="_blank"
+            )
+                inline-svg.button-icon(src="/icons/telegram-sidebar.svg")
+                span Поддержка
+        li.nav-item
+            button.nav-link(@click="exit")
+                inline-svg.button-icon(src="/icons/exit.svg")
+                span Выйти
+
+    button.burger(@click="toggleMenu")
+        inline-svg.burger-icon(:src="iconSrc")
+
+    .copy
+        a.text(
+            href="#"
+            target="_blank"
+        ) Документация API
+        .text © 2023 RubPay, Inc
 </template>
 
 <script>

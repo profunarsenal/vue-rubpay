@@ -1,7 +1,6 @@
-<template>
-    <div class="header-inner">
-        <slot></slot>
-    </div>
+<template lang="pug">
+.header-inner
+    slot
 </template>
 
 <script>

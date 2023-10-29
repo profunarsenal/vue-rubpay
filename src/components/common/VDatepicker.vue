@@ -1,26 +1,23 @@
-<template>
-    <date-picker 
-        class="datepicker"
-        v-model:value="date"
-        :langString="langString"
-        value-type="format"
-        @clear="clearInput"
-        range
-    >
-        <template #input>
-            <v-input
-                v-model="date"
-                placeholder="Дата"
-                isReadonly
-            />
-        </template>
-        <template #icon-calendar>
-            <inline-svg class="icon" src="/icons/calendar.svg"/>
-        </template>
-        <template #icon-clear>
-            <inline-svg class="icon-close" src="/icons/close.svg"/>
-        </template>
-    </date-picker>
+<template lang="pug">
+date-picker.datepicker(
+    v-model:value="date"
+    :langString="langString"
+    value-type="format"
+    @clear="clearInput"
+    range
+)
+    template(#input)
+        v-input(
+            v-model="date"
+            placeholder="Дата"
+            isReadonly
+        )
+
+    template(#icon-calendar)
+        inline-svg.icon(src="/icons/calendar.svg")
+
+    template(#icon-clear)
+        inline-svg.icon-close(src="/icons/close.svg")
 </template>
 
 <script>

@@ -1,33 +1,29 @@
-<template>
-    <div class="content">
-        <h4 class="title">Экспорт данных</h4>
-        <div class="labels">
-            <v-select 
-                placeholder="Касса"
-                :options="items"
-                :selected="form.checkout"
-                @select="selectOption($event, 'checkout')"
-            />
-            <v-datepicker 
-                :value="date"
-                @setDate="setDate"
-            />
-            <v-select
-                :selected="form.status"
-                :options="statusOptions"
-                placeholder="Статус платежа"
-                @select="selectOption($event, 'status')"
-            />
-        </div>
-        <div class="buttons">
-            <v-button type="secondary">
-                Отмена
-            </v-button>
-            <v-button isDisabled>
-                Выгрузить
-            </v-button>
-        </div>
-    </div>
+<template lang="pug">
+.content
+    h4.title Экспорт данных
+    .labels
+        v-select(
+            placeholder="Касса"
+            :options="items"
+            :selected="form.checkout"
+            @select="selectOption($event, 'checkout')"
+        )
+
+        v-datepicker(
+            :value="date"
+            @setDate="setDate"
+        )
+
+        v-select(
+            :selected="form.status"
+            :options="statusOptions"
+            placeholder="Статус платежа"
+            @select="selectOption($event, 'status')"
+        )
+
+    .buttons
+        v-button(type="secondary") Отмена
+        v-button(isDisabled) Выгрузить
 </template>
 
 <script>

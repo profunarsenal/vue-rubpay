@@ -1,49 +1,32 @@
-<template>
-    <div class="table">
-        <div class="table-header">
-            <div 
-                v-for="item in tableItems.header" 
-                :key="item.title" 
-                class="header-item"
-            >
-                {{ item.title }}
-            </div>
-        </div>
-        <div class="table-content">
-            <div 
-                v-for="item in tableItems.content" 
-                :key="item.id" 
-                class="table-row"
-                @click="openInfo"
-            >
-                <div class="row-item">{{ item.id }}</div>
-                <div class="row-item">{{ item.order }}</div>
-                <div class="row-item">{{ item.cashbox }}</div>
-                <div class="row-item">{{ item.sum }}</div>
-                <div class="row-item">{{ item.enrolled }}</div>
-                <div class="row-item">{{ item.paySystem }}</div>
-                <div class="row-item">
-                    <div :class="setStatusClass(item.status)">
-                        {{ setStatus(item.status) }}
-                    </div>
-                </div>
-                <div class="row-item">{{ item.date }}</div>
-                <div class="row-item">{{ item.checkId }}</div>
-                <div class="row-item">{{ item.uid }}</div>
-                <div class="row-item">
-                    <button
-                        class="button-info"
-                        @click.stop="openInfo"
-                    >
-                        <inline-svg
-                            class="icon"
-                            src="/icons/info.svg" 
-                        />
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+<template lang="pug">
+.table
+    .table-header
+        .header-item(
+            v-for="item in tableItems.header" 
+            :key="item.title"
+        ) {{ item.title }}
+
+    .table-content
+        .table-row(
+            v-for="item in tableItems.content" 
+            :key="item.id" 
+            class=""
+            @click="openInfo"
+        )
+            .row-item {{ item.id }}
+            .row-item {{ item.order }}
+            .row-item {{ item.cashbox }}
+            .row-item {{ item.sum }}
+            .row-item {{ item.enrolled }}
+            .row-item {{ item.paySystem }}
+            .row-item
+                .status(:class="setStatusClass(item.status)") {{ setStatus(item.status) }}
+            .row-item {{ item.date }}
+            .row-item {{ item.checkId }}
+            .row-item {{ item.uid }}
+            .row-item
+                button.button-info(@click.stop="openInfo")
+                    inline-svg.icon(src="/icons/info.svg")
 </template>
 
 <script>
@@ -67,8 +50,7 @@ export default {
 
     methods: {
         setStatusClass(status) {
-            const statusClass = status ? 'success' : 'cancel';
-            return ['status', statusClass];
+            return status ? 'success' : 'cancel';
         },
 
         setStatus(status) {

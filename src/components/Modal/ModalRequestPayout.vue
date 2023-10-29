@@ -1,38 +1,27 @@
-<template>
-    <div class="content">
-        <h4 class="title">Новая выплата</h4>
-        <div class="labels">
-            <v-select 
-                placeholder="Касса"
-                :options="items"
-                :selected="form.checkout"
-                @select="setValue"
-            />
-            <v-input
-                placeholder="Валюта"
-            />
-            <v-input
-                placeholder="Платежная система"
-            />
-            <v-input
-                placeholder="Сумма"
-            />
-            <v-input
-                placeholder="Номер заказа"
-            />
-            <v-input
-                placeholder="Реквизиты получателя"
-            />
-        </div>
-        <div class="buttons">
-            <v-button type="secondary">
-                Отмена
-            </v-button>
-            <v-button isDisabled>
-                Создать
-            </v-button>
-        </div>
-    </div>
+<template lang="pug">
+.content
+    h4.title Новая выплата
+    .labels
+        v-select(
+            placeholder="Касса"
+            :options="items"
+            :selected="form.checkout"
+            @select="setValue"
+        )
+
+        v-input(placeholder="Валюта")
+
+        v-input(placeholder="Платежная система")
+
+        v-input(placeholder="Сумма")
+
+        v-input(placeholder="Номер заказа")
+
+        v-input(placeholder="Реквизиты получателя") 
+
+    .buttons
+        v-button(type="secondary") Отмена
+        v-button(isDisabled) Создать
 </template>
 
 <script>

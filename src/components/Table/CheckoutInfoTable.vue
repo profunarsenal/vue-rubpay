@@ -1,26 +1,19 @@
-<template>
-    <div class="table">
-        <div class="table-header">
-            <div 
-                v-for="item in tableItems.header" 
-                :key="item.title" 
-                class="header-item"
-            >
-                {{ item.title }}
-            </div>
-        </div>
-        <div class="table-content">
-            <div 
-                v-for="item in tableItems.content" 
-                :key="item.id" 
-                class="table-row"
-            >
-                <div class="row-item">{{ item.tariff }}</div>
-                <div class="row-item">{{ item.limit }}</div>
-                <div class="row-item">{{ item.comission }}</div>
-            </div>
-        </div>
-    </div>
+<template lang="pug">
+.table
+    .table-header
+        .header-item(
+            v-for="item in tableItems.header" 
+            :key="item.title"
+        ) {{ item.title }}
+
+    .table-content
+        .table-row(
+            v-for="item in tableItems.content" 
+            :key="item.id"
+        ) 
+            .row-item {{ item.tariff }}
+            .row-item {{ item.limit }}
+            .row-item {{ item.comission }}
 </template>
 
 <script>

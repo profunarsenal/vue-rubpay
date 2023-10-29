@@ -1,47 +1,36 @@
-<template>
-    <div class="content">
-        <h4 class="title">{{ title }}</h4>
-        <div class="labels">
-            <v-input
-                placeholder="Название"
-            />
-            <v-input
-                placeholder="URL"
-            />
-            <v-input
-                placeholder="Success URL"
-            />
-            <v-input
-                placeholder="Error URL"
-            />
-            <v-input
-                placeholder="Notification URL (Платежи)"
-            />
-            <v-input
-                placeholder="Notification URL (Выплаты)"
-            />
-            <v-select 
-                placeholder="Кто платит комиссию"
-                :options="commissionSheet"
-                :selected="form.commission"
-                @select="setCommission"
-            />
-            <v-input
-                v-if="isEdit"
-                v-model="form.apiKey"
-                placeholder="API KEY"
-                isDisabled
-            />
-        </div>
-        <div class="buttons">
-            <v-button type="secondary">
-                Отмена
-            </v-button>
-            <v-button isDisabled>
-                Добавить
-            </v-button>
-        </div>
-    </div>
+<template lang="pug">
+.content
+    h4.title {{ title }}
+    .labels
+        v-input(placeholder="Название")
+
+        v-input(placeholder="URL")
+
+        v-input(placeholder="Success URL")
+
+        v-input(placeholder="Error URL")
+
+        v-input(placeholder="Notification URL (Платежи)")
+
+        v-input(placeholder="Notification URL (Выплаты)")
+
+        v-select(
+            placeholder="Кто платит комиссию"
+            :options="commissionSheet"
+            :selected="form.commission"
+            @select="setCommission"
+        )
+
+        v-input(
+            v-if="isEdit"
+            v-model="form.apiKey"
+            placeholder="API KEY"
+            isDisabled
+        )
+
+    .buttons
+        v-button(type="secondary") Отмена
+        v-button(isDisabled) Добавить
 </template>
 
 <script>

@@ -1,16 +1,15 @@
-<template>
-    <div class="table">
-        <div 
-            v-for="item in items" 
-            :key="item.title" 
-            class="item"
-        >
-            <slot :name="item.key" :item="item">
-                <span class="title">{{ item.title }}</span>
-                <span class="value">{{ item.value }}</span>
-            </slot>
-        </div>
-    </div>
+<template lang="pug">
+.table
+    .item(
+        v-for="item in items" 
+        :key="item.title"
+    ) 
+        slot(
+            :name="item.key"
+            :item="item"
+        )
+            .title {{ item.title }}
+            .value {{ item.value }}
 </template>
 
 <script>

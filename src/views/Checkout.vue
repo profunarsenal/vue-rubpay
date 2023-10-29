@@ -1,30 +1,23 @@
-<template>
-    <div class="inner-scroll">
-        <header-inner>
-        <v-button
+<template lang="pug">
+.inner-scroll
+    header-inner
+        v-button(
             type="tertiary"
             iconSrc="/icons/plus.svg"
             @click="addCheckout"
-        >
-            Добавить
-        </v-button>
-        </header-inner>
-        <main class="checkout">
-            <checkout-table
-                v-if="isDesktop"
-                class="checkout-table"
-                :table="checkoutTable"
-            />
-            <checkout-table-mobile
-                v-else
-                :table="checkoutTable"
-            />
-        </main>
-        <app-pagination
-            v-if="!isDesktop"
-            class="checkout-pagination"
-        />
-    </div>
+        ) Добавить
+
+    main.checkout
+        checkout-table.checkout-table(
+            v-if="isDesktop"
+            :table="checkoutTable"
+        )
+        checkout-table-mobile(
+            v-else
+            :table="checkoutTable"
+        )
+
+    app-pagination.checkout-pagination(v-if="!isDesktop")
 </template>
 
 <script>

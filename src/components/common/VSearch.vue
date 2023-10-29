@@ -1,27 +1,19 @@
-<template>
-    <div class="search">
-        <inline-svg
-            class="icon"
-            src="/icons/search.svg"
-        />
-        <button
-            v-if="modelValue"
-            class="clear"
-            @click="$emit('clear')"
-        >
-            <inline-svg
-                class="clear-icon"
-                src="/icons/close.svg"
-            />
-        </button>
-        <input 
-            class="input"
-            :value="modelValue"
-            :type="type"
-            :placeholder="placeholder"
-            @input="update"
-        >
-    </div>
+<template lang="pug">
+.search
+    inline-svg.icon(src="/icons/search.svg")
+
+    button.clear(
+        v-if="modelValue"
+        @click="$emit('clear')"
+    )
+        inline-svg.clear-icon(src="/icons/close.svg")
+
+    input.input(
+        :value="modelValue"
+        :type="type"
+        :placeholder="placeholder"
+        @input="update"
+    )
 </template>
 
 <script>

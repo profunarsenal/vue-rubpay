@@ -1,19 +1,24 @@
-<template>
-    <div class="content">
-        <h4 class="title">Информация о тарифах</h4>
-        <div class="tabs">
-            <button
-                v-for="(tab, index) in tabs"
-                :key="tab"
-                :class="['tab', {'active': index === activeTab}]" 
-                @click="activeTab = index"
-            >
-                <span class="text">{{ tab }}</span>
-            </button>
-        </div>
-        <checkout-info-table v-if="isDesktop" :table="checkoutInfoTable"/>
-        <checkout-info-mobile-table v-else :table="checkoutInfoTable"/>
-    </div>
+<template lang="pug">
+.content
+    h4.title Информация о тарифах
+    .tabs
+        button.tab(
+            v-for="(tab, index) in tabs"
+            :key="tab"
+            :class="{'active': index === activeTab}" 
+            @click="activeTab = index"
+        )
+            span.text {{ tab }}
+
+    checkout-info-table(
+        v-if="isDesktop"
+        :table="checkoutInfoTable"
+    )
+
+    checkout-info-mobile-table(
+        v-else
+        :table="checkoutInfoTable"
+    )
 </template>
 
 <script>

@@ -1,25 +1,16 @@
-<template>
-    <transition name="modal">
-        <div v-if="isOpened"
-            :class="modalClasses"
-        >
-            <div
-                class="wrapper"
-                v-click-outside="close"
-            >
-                <button class="close" @click="close">
-                    <inline-svg
-                        class="icon-close"
-                        src="/icons/close.svg"
-                    />
-                </button>
-                <component
-                    :is="component"
-                    :componentData="componentData"
-                />
-            </div>
-        </div>
-    </transition>
+<template lang="pug">
+transition(name="modal")
+    .modal(
+        v-if="isOpened"
+        :class="modalClasses"
+    )
+        .wrapper(v-click-outside="close")
+            button.close(@click="close")
+                inline-svg.icon-close(src="/icons/close.svg")
+            component(
+                :is="component"
+                :componentData="componentData"
+            )
 </template>
 
 <script>
@@ -49,10 +40,7 @@ export default {
         }),
 
         modalClasses() {
-            return [
-                'modal',
-                { center: this.positionCenter }
-            ];
+            return { center: this.positionCenter };
         },
     },
 
@@ -60,10 +48,6 @@ export default {
         close() {
             this.$store.commit('modal/close');
         },
-
-        closeOutside() {
-            console.log(this.isOpened)
-        }
     },
 };
 </script>

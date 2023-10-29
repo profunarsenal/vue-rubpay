@@ -1,112 +1,63 @@
-<template>
-    <div class="table">
-        <div class="table-header">
-            <div 
-                v-for="item in tableItems.header" 
-                :key="item.title" 
-                class="header-item"
-            >
-                {{ item.title }}
-            </div>
-        </div>
-        <div class="table-content">
-            <div 
-                v-for="item in tableItems.content" 
-                :key="item.id" 
-                class="table-row"
-                @click="openInfo"
-            >
-                <div class="row-item">{{ item.id }}</div>
-                <div class="row-item">{{ item.name }}</div>
-                <div class="row-item">{{ item.url }}</div>
-                <div class="row-item">
-                    <inline-svg :src="setIconActive(item.active)"/>
-                </div>
-                <div class="row-item balance">
-                    <div class="balance-item">
-                        <span class="sum">{{ item.balance.RUB }}</span>
-                        <span class="currency">RUB</span>
-                    </div>
-                    <div class="balance-item">
-                        <span class="sum">{{ item.balance.KZT }}</span>
-                        <span class="currency">KZT</span>
-                    </div>
-                    <div class="balance-item">
-                        <span class="sum">{{ item.balance.UAH }}</span>
-                        <span class="currency">UAH</span>
-                    </div>
-                </div>
-                <div class="row-item api">
-                    <button 
-                        @click.stop="toggleApi(item)"
-                        class="api-button"
-                    >
-                        <inline-svg
-                            class="icon"
-                            :src="iconSrc(item.isShowApi)" 
-                        />
-                        <v-tooltip class="tooltip-api">
-                            {{ tooltipText(item.isShowApi) }}
-                        </v-tooltip>
-                    </button>
-                    <span
-                        v-if="item.isShowApi"
-                        class="api-value"
-                    >
-                        {{ item.api }}
-                    </span>
-                </div>
-                <div class="row-item">
-                    <button 
-                        class="button-info"
-                        @click.stop="openInfo"
-                    >
-                        <inline-svg
-                            class="icon"
-                            src="/icons/info.svg" 
-                        />
-                    </button>
-                </div>
-                <button 
-                    class="button-edit"
-                    @click.stop="edit"
-                >
-                    <inline-svg 
-                        class="icon" 
-                        src="/icons/edit.svg"
-                    />
-                    <v-tooltip 
-                        class="tooltip-edit"
-                        position="right"
-                    >
-                        Редактировать кассу
-                    </v-tooltip>
-                </button>
-            </div>
-            <div class="table-row total">
-                <div class="row-item">Итого</div>
-                <div class="row-item"></div>
-                <div class="row-item"></div>
-                <div class="row-item"></div>
-                <div class="row-item balance">
-                    <div class="balance-item">
-                        <span class="sum">1,135,05</span>
-                        <span class="currency">RUB</span>
-                    </div>
-                    <div class="balance-item">
-                        <span class="sum">295,565,58</span>
-                        <span class="currency">KZT</span>
-                    </div>
-                    <div class="balance-item">
-                        <span class="sum">96,00</span>
-                        <span class="currency">UAH</span>
-                    </div>
-                </div>
-                <div class="row-item"></div>
-                <div class="row-item"></div>
-            </div>
-        </div>
-    </div>
+<template lang="pug">
+.table
+    .table-header
+        .header-item(
+            v-for="item in tableItems.header" 
+            :key="item.title"
+        ) {{ item.title }}
+
+    .table-content
+        .table-row(
+            v-for="item in tableItems.content"
+            :key="item.id"
+            @click="openInfo"
+        )
+            .row-item {{ item.id }}
+            .row-item {{ item.name }}
+            .row-item {{ item.url }}
+            .row-item
+                inline-svg(:src="setIconActive(item.active)")
+            .row-item.balance
+                .balance-item
+                    .sum {{ item.balance.RUB }}
+                    .currency RUB
+                .balance-item
+                    .sum {{ item.balance.KZT }}
+                    .currency KZT
+                .balance-item
+                    .sum {{ item.balance.UAH }}
+                    .currency UAH
+            .row-item.api
+                button.api-button(@click.stop="toggleApi(item)")
+                    inline-svg.icon(:src="iconSrc(item.isShowApi)")
+                    v-tooltip.tooltip-api {{ tooltipText(item.isShowApi) }}
+                .api-value(v-if="item.isShowApi") {{ item.api }}
+            .row-item
+                button.button-info(@click.stop="openInfo")
+                    inline-svg.icon(src="/icons/info.svg")
+            
+            button.button-edit(@click.stop="edit")
+                inline-svg.icon(src="/icons/edit.svg")
+                v-tooltip.tooltip-edit(position="right") Редактировать кассу
+
+        .table-row.total
+
+            .row-item Итог
+            .row-item
+            .row-item
+            .row-item
+            .row-item.balance
+                .balance-item
+                    .sum 1,135,05
+                    .currency RUB
+                .balance-item
+                    .sum 295,565,58
+                    .currency KZT
+                .balance-item
+                    .sum 96,00
+                    .currency UAH
+            .row-item
+            .row-item
 </template>
 
 <script>

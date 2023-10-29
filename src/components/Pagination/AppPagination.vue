@@ -1,34 +1,26 @@
-<template>
-    <div class="pagination">
-        <div class="info">
-            <div class="info-block">
-                <span>Общее количество:</span>
-                <span class="count">561</span>
-            </div>
-            <div class="info-block">
-                <span>Показано:</span>
-                <span class="count">50</span>
-            </div>
-        </div>
-        <div class="navigation">
-            <button class="button button-prev">
-                <img src="/icons/mark.svg" alt="Назад">
-            </button>
-            <ul class="list">
-                <li 
-                    v-for="item in pages" 
-                    :key="item" 
-                    :class="['item', {active: item === currentPage}]"
-                    @click="toPage(item)"
-                >
-                    {{ item }}
-                </li>
-            </ul>
-            <button class="button button-next">
-                <img src="/icons/mark.svg" alt="Вперед">
-            </button>
-        </div>
-    </div>
+<template lang="pug">
+.pagination
+    .info
+        .info-block
+            span Общее количество:
+            span.count 561
+        .info-block
+            span Показано:
+            span.count 50
+
+    .navigation
+        button.button.button-prev
+            img(src="/icons/mark.svg")
+        ul.list
+            li.item(
+                v-for="item in pages" 
+                :key="item" 
+                :class="{active: item === currentPage}"
+                @click="toPage(item)"
+            )
+                | {{ item }}
+        .button.button-next
+            img(src="/icons/mark.svg")
 </template>
 
 <script>

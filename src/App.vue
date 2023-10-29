@@ -1,20 +1,21 @@
-<template>
-    <div class="wrapper">
-        <app-sidebar
-            v-if="isDesktop"
-            :isCollapsed="isCollapsed"
-            @collapse="collapseSidebar"
-        />
-        <app-header v-else/>
-        <div :class="containerClasses">
-            <router-view />
-        </div>
-        <app-footer 
-            v-if="isDesktop" 
-            :isCollapsed="isCollapsed"
-        />
-        <v-modal />
-    </div>
+<template lang="pug">
+.wrapper
+    app-sidebar(
+        v-if="isDesktop"
+        :isCollapsed="isCollapsed"
+        @collapse="collapseSidebar"
+    )
+    app-header(v-else)
+
+    .container(:class="containerClasses")
+        router-view
+    
+    app-footer(
+        v-if="isDesktop" 
+        :isCollapsed="isCollapsed"
+    )
+
+    v-modal
 </template>
 
 <script>
@@ -44,10 +45,7 @@ export default {
 
     computed: {
         containerClasses() {
-            return [
-                'container',
-                { collapsed: this.isCollapsed },
-            ];
+            return { collapsed: this.isCollapsed };
         },
 
         isCollapsedMode() {

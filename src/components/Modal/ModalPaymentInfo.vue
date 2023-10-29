@@ -1,8 +1,7 @@
-<template>
-    <div class="content">
-        <h4 class="title">Информация о платеже №101639213</h4>
-        <payments-info-table :items="items"/>
-    </div>
+<template lang="pug">
+.content
+    h4.title Информация о платеже №101639213
+    payments-info-table(:items="items")
 </template>
 
 <script>

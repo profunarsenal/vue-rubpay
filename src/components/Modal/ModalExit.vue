@@ -1,20 +1,11 @@
-<template>
-    <div class="content">
-        <inline-svg
-            class="icon"
-            src="/icons/exit.svg"
-        />
-        <h5 class="title">Выход из аккаунта</h5>
-        <div class="text">Вы действительно хотите выйти из аккаунта?</div>
-        <div class="buttons">
-            <v-button type="secondary">
-                Отмена
-            </v-button>
-            <v-button>
-                Выйти
-            </v-button>
-        </div>
-    </div>
+<template lang="pug">
+.content
+    inline-svg.icon(src="/icons/exit.svg")
+    h5.title Выход из аккаунта
+    .text Вы действительно хотите выйти из аккаунта?
+    .buttons
+        v-button(type="secondary") Отмена
+        v-button Выйти
 </template>
 
 <script>

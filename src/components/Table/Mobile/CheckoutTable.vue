@@ -1,101 +1,52 @@
-<template>
-    <div class="table">
-        <ul class="list">
-            <li 
-                v-for="item in tableItems.content" 
-                :key="item.id" 
-                class="item"
-            >
-                <div 
-                    v-for="key in headerItems" 
-                    :key="key.title" 
-                    class="row"
-                >
-                    <div class="title">{{ key.title }}</div>
+<template lang="pug">
+.table
+    ul.list
+        li.item(
+            v-for="item in tableItems.content" 
+            :key="item.id"
+        )
+            .row(
+                v-for="key in headerItems" 
+                :key="key.title"
+            )
+                .title {{ key.title }}
 
-                    <div 
-                        v-if="key.title === 'ID'" 
-                        class="value"
-                    >
-                        {{ item.id }}
-                    </div>
+                .value(v-if="key.title === 'ID'") {{ item.id }}
 
-                    <div 
-                        v-if="key.title === 'Название'" 
-                        class="value"
-                    >
-                        {{ item.name }}
-                    </div>
+                .value(v-if="key.title === 'Название'") {{ item.name }}
 
-                    <div 
-                        v-if="key.title === 'URL'" 
-                        class="value"
-                    >
-                        {{ item.url }}
-                    </div>
+                .value(v-if="key.title === 'URL'") {{ item.url }}
 
-                    <div 
-                        v-if="key.title === 'Активен'" 
-                        class="value"
-                    >
-                        <img :src="setIconActive(item.active)">
-                    </div>
+                .value(v-if="key.title === 'Активен'")
+                    inline-svg(:src="setIconActive(item.active)")
 
-                    <div 
-                        v-if="key.title === 'Баланс'" 
-                        class="value"
-                    >
-                        <div class="balance">
-                            <div class="balance-item">
-                                <span class="sum">{{ item.balance.RUB }}</span>
-                                <span class="currency">RUB</span>
-                            </div>
-                            <div class="balance-item">
-                                <span class="sum">{{ item.balance.KZT }}</span>
-                                <span class="currency">KZT</span>
-                            </div>
-                            <div class="balance-item">
-                                <span class="sum">{{ item.balance.UAH }}</span>
-                                <span class="currency">UAH</span>
-                            </div>
-                        </div>
-                    </div>
+                .value(v-if="key.title === 'Баланс'")
+                    .balance
+                        .balance-item
+                            .sum {{ item.balance.RUB }}
+                            .currency RUB
+                        .balance-item
+                            .sum {{ item.balance.KZT }}
+                            .currency KZT
+                        .balance-item
+                            .sum {{ item.balance.UAH }}
+                            .currency UAH
 
-                    <div 
-                        v-if="key.title === 'API'" 
-                        class="value"
-                    >
-                        <div class="api">
-                            <button @click="toggleApi(item)">
-                                <img v-if="item.isShowApi" src="/icons/eye-hide.svg">
-                                <img v-else src="/icons/eye.svg">
-                            </button>
-                            <span
-                                v-if="item.isShowApi"
-                                class="api-value"
-                            >
-                                {{ item.api }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="buttons">
-                    <v-button
-                        type="outline"
-                        @click="openInfo"
-                    >
-                        Подробнее
-                    </v-button>
-                    <v-button
-                        type="outline"
-                        @click="edit"
-                    >
-                        Редактировать
-                    </v-button>
-                </div>
-            </li>
-        </ul>
-    </div>
+                .value(v-if="key.title === 'API'")
+                    .api
+                        button(@click="toggleApi(item)")
+                            inline-svg(:src="iconSrc(item.isShowApi)")
+                        .api-value(v-if="item.isShowApi") {{ item.api }}
+
+            .buttons
+                v-button(
+                    type="outline"
+                    @click="openInfo"
+                ) Подробнее
+                v-button(
+                    type="outline"
+                    @click="edit"
+                ) Редактировать
 </template>
 
 <script>
@@ -151,6 +102,10 @@ export default {
                     apiKey: 't5y6t5',
                 },
             });
+        },
+
+        iconSrc(isShowApi) {
+            return isShowApi ? '/icons/eye-hide.svg' : '/icons/eye.svg'
         },
     },
 };

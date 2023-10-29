@@ -1,16 +1,15 @@
-<template>
-    <button
-        :class="buttonClasses"
-        :disabled="isDisabled"
-        @click="$emit('onClick')"
-    >
-        <slot />
-        <inline-svg
-            v-if="iconSrc"
-            class="icon"
-            :src="iconSrc"
-        />
-    </button>
+<template lang="pug">
+button.button(
+    :class="buttonClasses"
+    :disabled="isDisabled"
+    @click="$emit('onClick')"
+)
+    slot
+
+    inline-svg.icon(
+        v-if="iconSrc"
+        :src="iconSrc"
+    )
 </template>
 
 <script>
@@ -42,13 +41,12 @@ export default {
     computed: {
         buttonClasses() {
             return [
-                'button',
                 this.type,
                 { 'icon-right': this.iconSrc },
                 { 'icon-only': this.isIconOnly },
             ];
         },
-    }
+    },
 };
 </script>
 

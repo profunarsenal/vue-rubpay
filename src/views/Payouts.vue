@@ -1,69 +1,54 @@
-<template>
-    <div class="inner-scroll">
-        <header-inner>
-        <div class="header-body">
-            <div class="header-buttons">
-                <v-button
+<template lang="pug">
+.inner-scroll
+    header-inner
+        .header-body
+            .header-buttons
+                v-button(
                     type="tertiary"
                     :iconSrc="isVisibleIcon('plus')"
                     @click="requestPayout"
-                >
-                    Запросить выплату
-                </v-button>
-                <v-button
+                )   Запросить выплату
+                v-button(
                     type="tertiary"
                     :iconSrc="isVisibleIcon('download')"
                     @click="exportPayout"
-                >
-                    Экспорт
-                </v-button>
-            </div>
-            <v-select
+                )   Экспорт
+            v-select(
                 :options="currencies"
                 placeholder="Курсы вылют"
                 class="select-currencies"
                 isReadonly
-            >
-                <template v-slot="{ option }">
-                    <div class="currencies">
-                        <span class="currencies-name">{{ option.name }}</span>
-                        <span class="currencies-value">{{ option.value }}</span>
-                    </div>
-                </template>
-            </v-select>
-            <div class="header-filters">
-                <div
-                    class="filter-block"
-                    v-click-outside="closeFilter"
-                >
-                    <v-button
+            )
+                template(v-slot="{ option }")
+                    .currencies
+                        .currencies-name {{ option.name }}
+                        .currencies-value {{ option.value }}
+
+            .header-filters
+                .filter-block(v-click-outside="closeFilter")
+                    v-button(
                         type="outline"
                         iconSrc="/icons/filter.svg"
                         isIconOnly
                         @click="toggleFilter"
-                    >
-                    </v-button>
-                    <app-filter :isOpened="isFilterOpened"/>
-                </div>
-                <v-search 
+                    )
+                    app-filter(:isOpened="isFilterOpened")
+
+                v-search(
                     v-model="searchValue"
                     @clear="clearSearch"
-                />
-            </div>
-        </div>
-        </header-inner>
-        <main class="payouts">
-            <payouts-table
-                v-if="isDesktop"
-                :table="payoutsTable"
-            />
-            <payouts-table-mobile
-                v-else
-                :table="payoutsTable"
-            />
-        </main>
-        <app-pagination class="payouts-pagination"/>
-    </div>
+                )
+
+    main.payouts
+        payouts-table(
+            v-if="isDesktop"
+            :table="payoutsTable"
+        )
+        payouts-table-mobile(
+            v-else
+            :table="payoutsTable"
+        )
+    app-pagination.payouts-pagination
 </template>
 
 <script>
@@ -257,6 +242,8 @@ export default {
                 min-height: 40px
             .placeholder
                 top: 10px
+            .icon
+                top: 8px
 
 @media(max-width: 576px)
     .select-currencies

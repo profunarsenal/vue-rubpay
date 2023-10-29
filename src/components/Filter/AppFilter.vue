@@ -1,58 +1,57 @@
-<template>
-    <div v-if="isOpened" class="filter-wrapper">
-        <div class="filter">
-            <div class="fields">
-                <v-input
-                    v-model="filters.id"
-                    placeholder="ID"
-                />
-                <v-select
-                    :selected="filters.status"
-                    :options="statusOptions"
-                    placeholder="Статус платежа"
-                    @select="selectOption($event, 'status')"
-                />
-                <v-input
-                    v-model="filters.order"
-                    placeholder="Заказ"
-                />
-                <v-select
-                    :selected="filters.payType"
-                    :options="statusOptions"
-                    placeholder="Методы оплаты"
-                    @select="selectOption($event, 'payType')"
-                />
-                <v-input
-                    v-model="filters.uid"
-                    placeholder="UID"
-                />
-                <v-select
-                    :selected="filters.cashbox"
-                    :options="statusOptions"
-                    placeholder="Касса"
-                    @select="selectOption($event, 'cashbox')"
-                />
-                <v-select
-                    :selected="filters.currency"
-                    :options="statusOptions"
-                    placeholder="Валюта"
-                    @select="selectOption($event, 'currency')"
-                />
-                <v-datepicker 
-                    :value="date"
-                    @setDate="setDate"
-                />
-            </div>
-            <div class="buttons">
-                <v-button type="secondary">
-                    Сбросить
-                </v-button>
-                <v-button isDisabled>
-                    Применить
-                </v-button>
-            </div>
-        </div>
-    </div>
+<template lang="pug">
+.filter-wrapper(v-if="isOpened")
+    .filter
+        .fields
+            v-input(
+                v-model="filters.id"
+                placeholder="ID"
+            )
+
+            v-select(
+                :selected="filters.status"
+                :options="statusOptions"
+                placeholder="Статус платежа"
+                @select="selectOption($event, 'status')"
+            )
+
+            v-input(
+                v-model="filters.order"
+                placeholder="Заказ"
+            )
+
+            v-select(
+                :selected="filters.payType"
+                :options="statusOptions"
+                placeholder="Методы оплаты"
+                @select="selectOption($event, 'payType')"
+            )
+
+            v-input(
+                v-model="filters.uid"
+                placeholder="UID"
+            )
+
+            v-select(
+                :selected="filters.cashbox"
+                :options="statusOptions"
+                placeholder="Касса"
+                @select="selectOption($event, 'cashbox')"
+            )
+
+            v-select(
+                :selected="filters.currency"
+                :options="statusOptions"
+                placeholder="Валюта"
+                @select="selectOption($event, 'currency')"
+            )
+
+            v-datepicker(
+                :value="date"
+                @setDate="setDate"
+            )
+        .buttons
+            v-button(type="secondary") Сбросить
+            v-button(isDisabled) Применить
 </template>
 
 <script>

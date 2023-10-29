@@ -1,52 +1,34 @@
-<template>
-    <div class="table">
-        <div class="table-header">
-            <div 
-                v-for="item in tableItems.header" 
-                :key="item.title" 
-                class="header-item"
-            >
-                {{ item.title }}
-            </div>
-        </div>
-        <div class="table-content">
-            <div 
-                v-for="item in tableItems.content" 
-                :key="item.id" 
-                class="table-row"
-                @click="openInfo"
-            >
-                <div class="row-item">
-                    <div>{{ item.id }}</div>
-                    <div class="api">API</div>
-                </div>
-                <div class="row-item">{{ item.cashbox }}</div>
-                <div class="row-item">{{ item.order }}</div>
-                <div class="row-item">{{ item.writtenOff }}</div>
-                <div class="row-item">{{ item.enrolled }}</div>
-                <div class="row-item">{{ item.payMethod }}</div>
-                <div class="row-item">
-                    <div>{{ item.wallet.number }}</div>
-                    <div class="system">{{ item.wallet.system }}</div>
-                </div>
-                <div class="row-item">
-                    <div class="status success">{{ item.status }}</div>
-                </div>
-                <div class="row-item">{{ item.date }}</div>
-                <div class="row-item">
-                    <button
-                        class="button-info"
-                        @click.stop="openInfo"
-                    >
-                        <inline-svg
-                            class="icon"
-                            src="/icons/info.svg" 
-                        />
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+<template lang="pug">
+.table
+    .table-header
+        .header-item(
+            v-for="item in tableItems.header" 
+            :key="item.title"
+        ) {{ item.title }}
+
+    .table-content
+        .table-row(
+            v-for="item in tableItems.content" 
+            :key="item.id" 
+            @click="openInfo"
+        )
+            .row-item
+                span {{ item.id }}
+                .api API
+            .row-item {{ item.cashbox }}
+            .row-item {{ item.order }}
+            .row-item {{ item.writtenOff }}
+            .row-item {{ item.enrolled }}
+            .row-item {{ item.payMethod }}
+            .row-item
+                span {{ item.wallet.number }}
+                .system {{ item.wallet.system }}
+            .row-item
+                .status.success {{ item.status }}
+            .row-item {{ item.date }}
+            .row-item 
+                button.button-info(@click.stop="openInfo")
+                    inline-svg.icon(src="/icons/info.svg")
 </template>
 
 <script>

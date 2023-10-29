@@ -1,56 +1,43 @@
-<template>
-    <div class="inner-scroll">
-        <header-inner>
-        <div class="header-body">
-            <div class="header-buttons">
-                <v-button
+<template lang="pug">
+.inner-scroll
+    header-inner
+        .header-body
+            .header-buttons
+                v-button(
                     type="tertiary"
                     :iconSrc="isVisibleIcon('plus')"
                     @click="createPayment"
-                >
-                    Создать платеж
-                </v-button>
-                <v-button
+                )   Создать платеж
+                v-button(
                     type="tertiary"
                     :iconSrc="isVisibleIcon('download')"
                     @click="exportPayment"
-                >
-                    Экспорт
-                </v-button>
-            </div>
-            <div class="header-filters">
-                <div
-                    class="filter-block"
-                    v-click-outside="closeFilter"
-                >
-                    <v-button
+                )   Экспорт
+            .header-filters
+                .filter-block(v-click-outside="closeFilter")
+                    v-button(
                         type="outline"
                         iconSrc="/icons/filter.svg"
                         isIconOnly
                         @click="toggleFilter"
-                    >
-                    </v-button>
-                    <app-filter :isOpened="isFilterOpened" />
-                </div>
-                <v-search
+                    )
+                    app-filter(:isOpened="isFilterOpened")
+                v-search(
                     v-model="searchValue"
                     @clear="clearSearch"
-                />
-            </div>
-        </div>
-        </header-inner>
-        <main class="payments">
-            <payments-table 
-                v-if="isDesktop"
-                :table="paymentsTable"
-            />
-            <payments-table-mobile
-                v-else
-                :table="paymentsTable"
-            />
-        </main>
-        <app-pagination class="payments-pagination" />
-    </div>
+                )
+
+    main.payments
+        payments-table(
+            v-if="isDesktop"
+            :table="paymentsTable"
+        )
+        payments-table-mobile(
+            v-else
+            :table="paymentsTable"
+        )
+
+    app-pagination.payments-pagination
 </template>
 
 <script>

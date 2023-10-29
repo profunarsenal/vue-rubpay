@@ -1,20 +1,11 @@
-<template>
-    <div class="content">
-        <inline-svg
-            src="/icons/close-sessions.svg"
-            class="icon"
-        />
-        <h5 class="title">Закрыть все сессии</h5>
-        <div class="text">Вы действительно хотите закрыть все сессии кроме текущей?</div>
-        <div class="buttons">
-            <v-button type="secondary">
-                Отмена
-            </v-button>
-            <v-button>
-                Закрыть
-            </v-button>
-        </div>
-    </div>
+<template lang="pug">
+.content
+    inline-svg.icon(src="/icons/close-sessions.svg")
+    h5.title Закрыть все сессии
+    .text Вы действительно хотите закрыть все сессии кроме текущей?
+    .buttons
+        v-button(type="secondary") Отмена
+        v-button Закрыть
 </template>
 
 <script>

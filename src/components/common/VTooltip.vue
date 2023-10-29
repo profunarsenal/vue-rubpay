@@ -1,7 +1,6 @@
-<template>
-    <div :class="['tooltip', `tooltip-${position}`]">
-        <slot></slot>
-    </div>
+<template lang="pug">
+.tooltip(:class="position")
+    slot
 </template>
 
 <script>
@@ -40,10 +39,10 @@ export default {
         height: 9px
         top: 50%
         transform: rotate(45deg) translateY(-50%)
-    &-left
+    &.left
         &::after
             left: -6px
-    &-right
+    &.right
         &::after
             right: 0
 </style>

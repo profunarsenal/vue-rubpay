@@ -1,47 +1,25 @@
-<template>
-    <div
-        :class="selectClasses"
-        v-click-outside="close"
-    >
-        <p 
-            v-if="placeholder"
-            class="placeholder"
-        >
-            {{ placeholder }}
-        </p>
+<template lang="pug">
+.select(
+    :class="selectClasses"
+    v-click-outside="close"
+)
+    p.placeholder(v-if="placeholder") {{ placeholder }}
 
-        <p 
-            class="field"
-            @click="toggleSelect"
-        >
-            {{ selected.name }}
-        </p>
+    p.field(@click="toggleSelect") {{ selected.name }}
 
-        <p 
-            v-if="description" 
-            class="description"
-        >
-            {{ description }}
-        </p>
+    p.description(v-if="description") {{ description }}
 
-        <img
-            src="/icons/mark.svg"
-            class="icon"
-        >
+    img.icon(src="/icons/mark.svg")
 
-        <div class="list-wrapper">
-            <ul class="list">
-                <li 
-                    v-for="option in options" 
-                    :key="option.value" 
-                    :class="['list-item', {selected: option.value === selected.value}]"
-                    @click="selectOption(option)"
-                >
-                    <slot :option="option">{{ option.name }}</slot>
-                </li>
-            </ul>
-        </div>
-    </div>
+    .list-wrapper
+        ul.list
+            li.list-item(
+                v-for="option in options"
+                :key="option.value"
+                :class="{selected: option.value === selected.value}"
+                @click="selectOption(option)"
+            )
+                slot(:option="option") {{ option.name }}
 </template>
 
 <script>
@@ -89,7 +67,6 @@ export default {
     computed: {
         selectClasses() {
             return [
-                'select',
                 { open: this.isOpened },
                 { error: this.isError },
                 { focused: this.isFocused && !this.isReadonly },

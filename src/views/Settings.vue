@@ -1,68 +1,57 @@
-<template>
-    <main class="settings">
-        <div class="info">
-            <h2 class="title">Основная информация</h2>
-            <div class="form">
+<template lang="pug">
+main.settings
+    .info
+        h2.title Основная информация
+        .form
+            .labels
+                v-input(
+                    v-model="user.email"
+                    placeholder="E-mail"
+                )
 
-                <div class="labels">
-                    <v-input
-                        v-model="user.email"
-                        placeholder="E-mail"
-                    />
-                    <v-input
-                        v-model="user.password"
-                        placeholder="Пароль"
-                        type="password"
-                    />
-                    <v-input
-                        v-model="user.telegram"
-                        placeholder="Telegram"
-                    />
-                    <v-input
-                        v-model="user.telegramId"
-                        placeholder="Telegram ID"
-                    />
-                </div>
+                v-input(
+                    v-model="user.password"
+                    placeholder="Пароль"
+                    type="password"
+                )
 
-                <a class="bot" href="#">
-                    <div class="bot-icon">
-                        <img src="/icons/telegram.svg" alt="@RubPayNotifyBot">
-                    </div>
-                    <div class="bot-content">
-                        <div class="bot-title">Наш телеграм бот</div>
-                        <div class="bot-subtitle">@RubPayNotifyBot</div>
-                    </div>
-                </a>
+                v-input(
+                    v-model="user.telegram"
+                    placeholder="Telegram"
+                )
 
-                <v-button
-                    class="settings-button"
-                    isDisabled
-                >
-                    Сохранить
-                </v-button>
-            </div>
-        </div>
-        <div class="sessions">
-            <div class="sessions-header">
-                <h2 class="title">Активные сессии</h2>
-                <button class="sessions-close" @click="closeSessions">Закрыть все сессии кроме текущей</button>
-            </div>
-            <ul class="sessions-list">
-                <li
-                    v-for="session in sessions" 
-                    :key="session.id" 
-                    :class="['session-item', {active: session.isActive}]"
-                >
-                    <span class="session-ip">5.8.16.148</span>
-                    <span class="session-date">
-                        <span>2023-06-03</span>
-                        <span class="session-time">17:33:46</span>
-                    </span>
-                    <span class="session-current">Текущая сессия</span>
-                </li>
-            </ul>
-        </div>
-    </main>
+                v-input(
+                    v-model="user.telegramId"
+                    placeholder="Telegram ID"
+                )
+
+            a.bot(
+                href="#"
+                target="_blank"
+            )
+                .bot-icon
+                    img(src="/icons/telegram.svg")
+                .bot-content
+                    .bot-title Наш телеграм бот
+                    .bot-subtitle @RubPayNotifyBot
+
+            v-button.settings-button(isDisabled) Сохранить
+
+    .sessions
+        .sessions-header
+            h2.title Активные сессии
+            button.sessions-close(@click="closeSessions") Закрыть все сессии кроме текущей
+        ul.sessions-list
+            li.session-item(
+                v-for="session in sessions" 
+                :key="session.id" 
+                :class="{active: session.isActive}"
+            )
+                .session-ip 5.8.16.148
+                .session-date
+                    span 2023-06-03
+                    .session-time 17:33:46
+                .session-current Текущая сессия
 </template>
 
 <script>

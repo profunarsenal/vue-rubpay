@@ -1,72 +1,38 @@
-<template>
-    <aside :class="sidebarClasess">
-        <div class="logo">
-            <img
-                :src="logo"
-                alt="Логотип"
-            >
-        </div>
+<template lang="pug">
+aside.sidebar(:class="sidebarClasess")
+    .logo
+        img(:src="logo")
 
-        <ul class="menu">
-            <li
-                :class="['menu-item', { active: item.path === $route.path}]"
-                v-for="item in menuItems"
-                :key="item.title"
-            >
-                <router-link 
-                    class="menu-link"
-                    :to="item.path"
-                >
-                    <inline-svg
-                        class="menu-icon"
-                        :src="item.icon"
-                    />
-                    <span class="text">{{ item.title }}</span>
-                </router-link>
-                <v-tooltip class="sidebar-tooltip">
-                    {{ item.title }}
-                </v-tooltip>
-            </li>
-        </ul>
+    ul.menu
+        li.menu-item(
+            :class="{active: item.path === $route.path}"
+            v-for="item in menuItems"
+            :key="item.title"
+        )
+            router-link.menu-link(:to="item.path")
+                inline-svg.menu-icon(:src="item.icon")
+                span.text {{ item.title }}
+            v-tooltip.sidebar-tooltip {{ item.title }}
 
-        <div class="buttons">
-            <button class="button" href="#">
-                <inline-svg
-                    class="button-icon"
-                    src="/icons/telegram-sidebar.svg"
-                />
-                <span class="text">Поддержка</span>
-                <v-tooltip class="sidebar-tooltip">
-                    Поддержка
-                </v-tooltip>
-            </button>
-            <button class="button" @click="exit">
-                <inline-svg
-                    class="button-icon"
-                    src="/icons/exit.svg"
-                />
-                <span class="text">Выйти</span>
-                <v-tooltip class="sidebar-tooltip">
-                    Выйти
-                </v-tooltip>
-            </button>
-        </div>
+    .buttons
+        a.button(
+            href="#"
+            target="_blank"
+        )
+            inline-svg.button-icon(src="/icons/telegram-sidebar.svg")
+            .text Поддержка
+            v-tooltip.sidebar-tooltip Поддержка
+        button.button(@click="exit")
+            inline-svg.button-icon(src="/icons/exit.svg")
+            .text Выйти
+            v-tooltip.sidebar-tooltip Выйти
 
-        <button
-            v-if="isSwitcher"
-            class="collapse-button"
-            @click="collapseSidebar"
-        >
-            <img
-                class="collapse-icon"
-                src="/icons/arrow-tick.svg"
-                alt="Свернуть"
-            >
-            <v-tooltip class="sidebar-tooltip">
-                Свернуть
-            </v-tooltip>
-        </button>
-    </aside>
+    button.collapse-button(
+        v-if="isSwitcher"
+        @click="collapseSidebar"
+    )
+        img.collapse-icon(src="/icons/arrow-tick.svg")
+        v-tooltip.sidebar-tooltip Свернуть
 </template>
 
 <script>
@@ -97,10 +63,7 @@ export default {
         },
 
         sidebarClasess() {
-            return [
-                'sidebar',
-                { collapsed: this.isCollapsed },
-            ];
+            return { collapsed: this.isCollapsed };
         },
 
         isSwitcher() {

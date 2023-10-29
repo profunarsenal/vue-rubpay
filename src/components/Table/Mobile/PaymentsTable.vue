@@ -1,102 +1,42 @@
-<template>
-    <div class="table">
-        <ul class="list">
-            <li 
-                v-for="item in tableItems.content" 
-                :key="item.id" 
-                class="item"
-            >
-                <div 
-                    v-for="key in headerItems" 
-                    :key="key.title" 
-                    class="row"
-                >
-                    <div class="title">{{ key.title }}</div>
+<template lang="pug">
+.table
+    ul.list
+        li.item(
+            v-for="item in tableItems.content" 
+            :key="item.id"
+        )
+            .row(
+                v-for="key in headerItems" 
+                :key="key.title"
+            )
+                .title {{ key.title }}
 
-                    <div 
-                        v-if="key.title === 'ID'" 
-                        class="value"
-                    >
-                        {{ item.id }}
-                    </div>
+                .value(v-if="key.title === 'ID'") {{ item.id }}
 
-                    <div 
-                        v-if="key.title === 'Заказ'" 
-                        class="value"
-                    >
-                        {{ item.order }}
-                    </div>
+                .value(v-if="key.title === 'Заказ'") {{ item.order }}
 
-                    <div 
-                        v-if="key.title === 'Касса'" 
-                        class="value"
-                    >
-                        {{ item.cashbox }}
-                    </div>
+                .value(v-if="key.title === 'Касса'") {{ item.cashbox }}
 
-                    <div 
-                        v-if="key.title === 'Сумма'" 
-                        class="value"
-                    >
-                        {{ item.sum }}
-                    </div>
+                .value(v-if="key.title === 'Сумма'") {{ item.sum }}
 
-                    <div 
-                        v-if="key.title === 'Зачислено'" 
-                        class="value"
-                    >
-                        {{ item.enrolled }}
-                    </div>
+                .value(v-if="key.title === 'Зачислено'") {{ item.enrolled }}
 
-                    <div 
-                        v-if="key.title === 'ПС'" 
-                        class="value"
-                    >
-                        {{ item.paySystem }}
-                    </div>
+                .value(v-if="key.title === 'ПС'") {{ item.paySystem }}
 
-                    <div 
-                        v-if="key.title === 'Статус'" 
-                        class="value"
-                    >
-                        <div :class="setStatusClass(item.status)">
-                            {{ setStatus(item.status) }}
-                        </div>
-                    </div>
+                .value(v-if="key.title === 'Статус'")
+                    .status(:class="setStatusClass(item.status)") {{ setStatus(item.status) }}
 
-                    <div 
-                        v-if="key.title === 'Дата'" 
-                        class="value"
-                    >
-                        {{ item.date }}
-                    </div>
+                .value(v-if="key.title === 'Дата'") {{ item.date }}
 
-                    <div 
-                        v-if="key.title === 'Чек ID'" 
-                        class="value"
-                    >
-                        {{ item.checkId }}
-                    </div>
+                .value(v-if="key.title === 'Чек ID'") {{ item.checkId }}
 
-                    <div 
-                        v-if="key.title === 'UID'" 
-                        class="value"
-                    >
-                        {{ item.uid }}
-                    </div>
+                .value(v-if="key.title === 'UID'") {{ item.uid }}
 
-                </div>
-                <div class="buttons">
-                    <v-button
-                        type="outline"
-                        @click="openInfo"
-                    >
-                        Подробнее
-                    </v-button>
-                </div>
-            </li>
-        </ul>
-    </div>
+            .buttons
+                v-button(
+                    type="outline"
+                    @click="openInfo"
+                ) Подробнее
 </template>
 
 <script>
@@ -131,8 +71,7 @@ export default {
 
     methods: {
         setStatusClass(status) {
-            const statusClass = status ? 'success' : 'cancel';
-            return ['status', statusClass];
+            return status ? 'success' : 'cancel';
         },
 
         setStatus(status) {

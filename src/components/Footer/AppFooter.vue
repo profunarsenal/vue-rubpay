@@ -1,10 +1,11 @@
-<template>
-    <footer :class="footerClasess">
-        <div class="content">
-            <a class="text" href="#">Документация API</a>
-            <span class="text">© 2023 RubPay, Inc</span>
-        </div>
-    </footer>
+<template lang="pug">
+footer.footer(:class="footerClasess")
+    .content
+        a.text(
+            href="#"
+            target="_blank"
+        ) Документация API
+        .text © 2023 RubPay, Inc
 </template>
 
 <script>
@@ -20,10 +21,7 @@ export default {
 
     computed: {
         footerClasess() {
-            return [
-                'footer',
-                { collapsed: this.isCollapsed },
-            ];
+            return { collapsed: this.isCollapsed };
         },
     },
 };
