@@ -10,7 +10,7 @@
         .table-row(
             v-for="item in tableItems.content" 
             :key="item.id" 
-            @click="openInfo"
+            @click.stop="openInfo"
         )
             .row-item
                 span {{ item.id }}

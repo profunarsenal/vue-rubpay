@@ -11,7 +11,7 @@
             v-for="item in tableItems.content" 
             :key="item.id" 
             class=""
-            @click="openInfo"
+            @click.stop="openInfo"
         )
             .row-item {{ item.id }}
             .row-item {{ item.order }}

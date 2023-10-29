@@ -6,12 +6,12 @@
                 v-button(
                     type="tertiary"
                     :iconSrc="isVisibleIcon('plus')"
-                    @click="createPayment"
+                    @click.stop="createPayment"
                 )   Создать платеж
                 v-button(
                     type="tertiary"
                     :iconSrc="isVisibleIcon('download')"
-                    @click="exportPayment"
+                    @click.stop="exportPayment"
                 )   Экспорт
             .header-filters
                 .filter-block(v-click-outside="closeFilter")

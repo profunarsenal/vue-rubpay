@@ -4,7 +4,7 @@
         v-button(
             type="tertiary"
             iconSrc="/icons/plus.svg"
-            @click="addCheckout"
+            @click.stop="addCheckout"
         ) Добавить
 
     main.checkout

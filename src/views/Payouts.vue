@@ -6,12 +6,12 @@
                 v-button(
                     type="tertiary"
                     :iconSrc="isVisibleIcon('plus')"
-                    @click="requestPayout"
+                    @click.stop="requestPayout"
                 )   Запросить выплату
                 v-button(
                     type="tertiary"
                     :iconSrc="isVisibleIcon('download')"
-                    @click="exportPayout"
+                    @click.stop="exportPayout"
                 )   Экспорт
             v-select(
                 :options="currencies"

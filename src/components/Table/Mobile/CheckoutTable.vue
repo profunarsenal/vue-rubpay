@@ -41,11 +41,11 @@
             .buttons
                 v-button(
                     type="outline"
-                    @click="openInfo"
+                    @click.stop="openInfo"
                 ) Подробнее
                 v-button(
                     type="outline"
-                    @click="edit"
+                    @click.stop="edit"
                 ) Редактировать
 </template>
 

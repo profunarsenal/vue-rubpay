@@ -22,7 +22,7 @@ header.header(:class="{open: isOpened}")
                 inline-svg.button-icon(src="/icons/telegram-sidebar.svg")
                 span Поддержка
         li.nav-item
-            button.nav-link(@click="exit")
+            button.nav-link(@click.stop="exit")
                 inline-svg.button-icon(src="/icons/exit.svg")
                 span Выйти
 

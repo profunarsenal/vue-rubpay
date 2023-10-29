@@ -22,7 +22,7 @@ aside.sidebar(:class="sidebarClasess")
             inline-svg.button-icon(src="/icons/telegram-sidebar.svg")
             .text Поддержка
             v-tooltip.sidebar-tooltip Поддержка
-        button.button(@click="exit")
+        button.button(@click.stop="exit")
             inline-svg.button-icon(src="/icons/exit.svg")
             .text Выйти
             v-tooltip.sidebar-tooltip Выйти

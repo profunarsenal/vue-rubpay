@@ -40,7 +40,7 @@ main.settings
     .sessions
         .sessions-header
             h2.title Активные сессии
-            button.sessions-close(@click="closeSessions") Закрыть все сессии кроме текущей
+            button.sessions-close(@click.stop="closeSessions") Закрыть все сессии кроме текущей
         ul.sessions-list
             li.session-item(
                 v-for="session in sessions" 

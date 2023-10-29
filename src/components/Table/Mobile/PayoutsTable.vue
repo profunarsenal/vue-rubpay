@@ -38,7 +38,7 @@
             .buttons
                 v-button(
                     type="outline"
-                    @click="openInfo"
+                    @click.stop="openInfo"
                 ) Подробнее
 </template>
 
