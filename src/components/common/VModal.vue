@@ -33,11 +33,14 @@ export default {
 
     computed: {
         ...mapState({
-            isOpened: state => state.modal.isOpened,
             componentData: state => state.modal.componentData,
             component: state => state.modal.component,
             positionCenter: state => state.modal.positionCenter,
         }),
+
+        isOpened() {
+            return this.component ? true : false;
+        },
 
         modalClasses() {
             return {
