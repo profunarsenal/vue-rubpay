@@ -204,4 +204,8 @@ export default {
     .table-header,
     .table-content
         min-width: 1216px
+
+    .status
+        padding: 6px
+        word-break: normal
 </style>

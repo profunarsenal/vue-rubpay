@@ -2,7 +2,7 @@ export const MENU_ITEMS = [
     {
         title: 'Кассы',
         icon: '/icons/basket.svg',
-        path: '/'
+        path: '/checkout'
     },
     {
         title: 'Платежи',

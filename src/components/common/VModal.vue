@@ -69,7 +69,7 @@ export default {
 
 .modal-enter-active,
 .modal-leave-active
-    transition: opacity 0.3s ease
+    transition: all 0.3s ease
 
 .modal-enter-from,
 .modal-leave-to

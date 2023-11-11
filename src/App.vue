@@ -1,65 +1,23 @@
 <template lang="pug">
-.wrapper
-    app-sidebar(
-        v-if="isDesktop"
-        :isCollapsed="isCollapsed"
-        @collapse="collapseSidebar"
-    )
-    app-header(v-else)
-
-    .container(:class="containerClasses")
-        router-view
-    
-    app-footer(
-        v-if="isDesktop" 
-        :isCollapsed="isCollapsed"
-    )
-
-    v-modal
+component(:is="layout")
 </template>
 
 <script>
-import AppHeader from '@/components/Header/AppHeader';
-import AppSidebar from '@/components/Sidebar/AppSidebar';
-import AppFooter from '@/components/Footer/AppFooter';
-import VModal from '@/components/common/VModal';
-import window from '@/mixins/window';
+import MainLayout from '@/layouts/MainLayout';
+import EmptyLayout from '@/layouts/EmptyLayout';
 
 export default {
     name: "App",
 
-    mixins: [window],
-
     components: {
-        AppHeader,
-        AppSidebar,
-        AppFooter,
-        VModal,
-    },
-
-    data() {
-        return {
-            isSidebarSwitcher: false,
-        };
+        MainLayout,
+        EmptyLayout,
     },
 
     computed: {
-        containerClasses() {
-            return { collapsed: this.isCollapsed };
-        },
-
-        isCollapsedMode() {
-            return this.width <= 1366 ? true : false;
-        },
-
-        isCollapsed() {
-            return this.isCollapsedMode || this.isSidebarSwitcher;
-        },
-    },
-
-    methods: {
-        collapseSidebar(value) {
-            this.isSidebarSwitcher = value;
+        layout() {
+            const layoutName = this.$route.meta.layout || 'main';
+            return `${layoutName}-layout`;
         },
     },
 };

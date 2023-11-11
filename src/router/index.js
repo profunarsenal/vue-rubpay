@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import Login from '@/views/Login';
 import Checkout from '@/views/Checkout';
 import Payments from '@/views/Payments';
 import Payouts from '@/views/Payouts';
@@ -8,6 +9,14 @@ import Error from '@/views/Error';
 const routes = [
     {
         path: '/',
+        name: 'Login',
+        component: Login,
+        meta: {
+            layout: 'empty',
+        },
+    },
+    {
+        path: '/checkout',
         name: 'Checkout',
         component: Checkout,
     },
@@ -27,9 +36,12 @@ const routes = [
         component: Settings,
     },
     {
-        path: '/error',
+        path: '/:pathMatch(.*)*',
         name: 'Error',
         component: Error,
+        meta: {
+            layout: 'empty',
+        },
     },
 ];
 
