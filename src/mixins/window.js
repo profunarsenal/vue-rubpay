@@ -21,4 +21,8 @@ export default {
         this.windowUpdateWidth();
         window.addEventListener('resize', this.windowUpdateWidth);
     },
+
+    beforeUnmount() {
+        window.removeEventListener('resize', this.windowUpdateWidth);
+    },
 };
